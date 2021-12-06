@@ -11,9 +11,12 @@ import { MdHeadset, MdLocationOn, MdEmail } from "react-icons/md";
 import { BsFillBriefcaseFill } from "react-icons/bs";
 
 export function Cards() {
+  const flexBackground = useColorModeValue("#F9FAFB", "gray.600");
+  const boxBackground = useColorModeValue("white", "gray.800");
+
   return (
     <Flex
-      bg={useColorModeValue("#F9FAFB", "gray.600")}
+      bg={flexBackground}
       p={0}
       w="full"
       alignItems="center"
@@ -22,7 +25,7 @@ export function Cards() {
       <Box
         w="sm"
         mx="auto"
-        bg={useColorModeValue("white", "gray.800")}
+        bg={boxBackground}
         shadow="lg"
         rounded="lg"
         overflow="hidden"
@@ -33,7 +36,7 @@ export function Cards() {
           fit="cover"
           objectPosition="center"
           src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-          alt="avatar"
+          alt="character"
         />
 
         <Flex alignItems="center" px={6} py={3} bg="gray.900">

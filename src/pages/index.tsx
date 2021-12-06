@@ -21,11 +21,10 @@ import styles from "../styles/Home.module.scss";
 
 export default function Home() {
   const { toggleColorMode } = useColorMode();
-  const formBackground = useColorModeValue("gray.100", "gray.700");
   return (
     <>
       <Head>
-        <title>Home</title>
+        <title>Rick & Morty Wiki | Home</title>
       </Head>
       <Flex
         justifyContent="center"
