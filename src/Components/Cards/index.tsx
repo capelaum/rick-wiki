@@ -12,7 +12,7 @@ export function Cards() {
 
   return (
     <GridItem colSpan={3}>
-      <SimpleGrid minChildWidth="200px" spacing={4}>
+      <SimpleGrid minChildWidth="250px" spacing={4}>
         <Card />
         <Card />
         <Card />

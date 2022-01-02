@@ -11,9 +11,18 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
-import { MdHeadset, MdLocationOn, MdEmail } from "react-icons/md";
-import { BsFillBriefcaseFill } from "react-icons/bs";
+import { IconType } from "react-icons";
+
+import { MdHeadset, MdLocationOn, MdOutlineTripOrigin } from "react-icons/md";
+import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
+import { RiAliensFill } from "react-icons/ri";
+
 import { CardInfo } from "../CardInfo";
+
+interface CardProps {
+  icon: IconType;
+  text: string;
+}
 
 export function Card() {
   const boxBackground = useColorModeValue("gray.50", "gray.700");
@@ -57,7 +66,10 @@ export function Card() {
           Building UI.
         </chakra.p> */}
 
-        <CardInfo />
+        <CardInfo text="Male" icon={BsGenderMale} />
+        <CardInfo text="Citadel of Ricks" icon={MdLocationOn} />
+        <CardInfo text="unknown" icon={MdOutlineTripOrigin} />
+        <CardInfo text="Alien" icon={RiAliensFill} />
       </Box>
     </GridItem>
   );

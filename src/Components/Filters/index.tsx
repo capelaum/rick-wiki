@@ -37,7 +37,9 @@ export function Filters() {
           size="md"
           variant="outline"
           icon={<MdArrowDropDown />}
+          iconColor="cyan.600"
           borderColor="cyan.600"
+          colorScheme="cyan"
         >
           <option value="alive">Alive</option>
           <option value="dead">Dead</option>
@@ -48,6 +50,7 @@ export function Filters() {
           size="md"
           variant="outline"
           icon={<MdArrowDropDown />}
+          iconColor="cyan.600"
           borderColor="cyan.600"
         >
           <option value="human">Human</option>
@@ -67,6 +70,7 @@ export function Filters() {
           size="md"
           variant="outline"
           icon={<MdArrowDropDown />}
+          iconColor="cyan.600"
           borderColor="cyan.600"
         >
           <option value="male">Male</option>
