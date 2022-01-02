@@ -5,7 +5,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
-import { Card } from "../Card";
+import { Card } from "./Card";
 
 export function Cards() {
   const flexBackground = useColorModeValue("#F9FAFB", "gray.600");

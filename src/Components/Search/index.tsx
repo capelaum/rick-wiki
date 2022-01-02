@@ -7,6 +7,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 import { SearchIcon } from "@chakra-ui/icons";
@@ -16,13 +17,18 @@ interface SearchProps {}
 export function Search() {
   return (
     <Flex
-      mt={8}
+      my={10}
       w="100%"
       maxW="600px"
       flexDirection="column"
       alignItems="center"
     >
-      <Heading as="h2" pb="20px" size="lg">
+      <Heading
+        as="h2"
+        pb="20px"
+        size="lg"
+        color={useColorModeValue("gray.700", "gray.200")}
+      >
         Characters
       </Heading>
       <Flex w="100%">

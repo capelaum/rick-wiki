@@ -32,7 +32,12 @@ export function CardInfo({ icon, text }: CardInfoProps) {
         color="cyan.600"
       />
 
-      <Heading as="h2" px={2} fontSize="md">
+      <Heading
+        as="h2"
+        px={2}
+        fontSize="md"
+        color={useColorModeValue("gray.700", "gray.200")}
+      >
         {text}
       </Heading>
     </Flex>

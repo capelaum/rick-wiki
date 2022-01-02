@@ -17,7 +17,7 @@ import { MdHeadset, MdLocationOn, MdOutlineTripOrigin } from "react-icons/md";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { RiAliensFill } from "react-icons/ri";
 
-import { CardInfo } from "../CardInfo";
+import { CardInfo } from "./CardInfo";
 
 interface CardProps {
   icon: IconType;
