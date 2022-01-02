@@ -22,7 +22,7 @@ export function Cards({ results, onPageChange, page }: CardsProps) {
   const { width } = useWindowSize();
 
   return (
-    <GridItem colSpan={width >= 768 ? 3 : 4}>
+    <GridItem colSpan={4}>
       <Pagination setPageNumber={onPageChange} page={page} />
 
       {results ? (

@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
 
-import { Container, Grid } from "@chakra-ui/react";
-
-import { useWindowSize } from "usehooks-ts";
+import { Container, Grid, Stack } from "@chakra-ui/react";
 
 import { Header } from "../Components/Header";
 import { Search } from "../Components/Search";
@@ -15,8 +13,6 @@ import { api } from "../services/api";
 import { Info, Result } from "../utils/types";
 
 export default function Home() {
-  const { width } = useWindowSize();
-
   const [page, setPage] = useState(1);
   const [results, setResults] = useState<Result[]>([]);
   const [info, setInfo] = useState<Info>({} as Info);
@@ -40,10 +36,16 @@ export default function Home() {
       </Head>
       <Header />
 
-      <Container maxW="1240px" centerContent px="1rem">
-        <Search />
-
-        {width < 768 && <Filters />}
+      <Container maxW="1240px" centerContent px="1.25rem">
+        <Stack
+          direction={["column", "column", "column", "row"]}
+          spacing={4}
+          w="full"
+          py={4}
+        >
+          <Search />
+          <Filters />
+        </Stack>
         <Grid
           templateColumns="repeat(4, 1fr)"
           gap={4}
@@ -51,7 +53,6 @@ export default function Home() {
           py={6}
           width="full"
         >
-          {width >= 768 && <Filters />}
           <Cards results={results} onPageChange={setPage} page={page} />
         </Grid>
       </Container>

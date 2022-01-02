@@ -1,12 +1,8 @@
 import {
-  Box,
   Button,
-  Container,
   Flex,
   Heading,
-  Spacer,
   Stack,
-  Switch,
   Text,
   Tooltip,
   useColorMode,
@@ -24,10 +20,10 @@ export function Header() {
       as="header"
       bg={background}
       borderBottom="1px"
-      borderColor="cyan.300"
+      borderColor="cyan.600"
       py="1rem"
       justifyContent="center"
-      px="1rem"
+      px="1.25rem"
     >
       <Flex
         maxWidth="1200px"
