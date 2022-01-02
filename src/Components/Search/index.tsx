@@ -40,6 +40,11 @@ export function Search() {
             placeholder="Search for characters"
             size="md"
             borderColor="cyan.600"
+            focusBorderColor="cyan.700"
+            _placeholder={{
+              color: "gray.500",
+              fontSize: "lg",
+            }}
           />
         </InputGroup>
         <Button ml={4} colorScheme="cyan" variant="solid" size="md">

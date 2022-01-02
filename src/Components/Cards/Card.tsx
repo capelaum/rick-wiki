@@ -8,6 +8,7 @@ import {
   Heading,
   Icon,
   Image,
+  LightMode,
   useColorModeValue,
 } from "@chakra-ui/react";
 
@@ -69,6 +70,8 @@ export function Card({ result }: CardProps) {
       rounded="lg"
       overflow="hidden"
       position="relative"
+      border="1px solid"
+      borderColor="cyan.600"
     >
       <Image
         w="full"
@@ -84,24 +87,26 @@ export function Card({ result }: CardProps) {
         alignItems="center"
         px={4}
         py={3}
-        bg="cyan.500"
+        bg="cyan.600"
       >
         <Heading as="h2" color="white" fontWeight="bold" fontSize="lg">
           {name}
         </Heading>
       </Flex>
 
-      <Badge
-        position="absolute"
-        top={4}
-        right={4}
-        colorScheme={
-          status === "Dead" ? "red" : status === "Alive" ? "green" : "purple"
-        }
-        variant="solid"
-      >
-        {status}
-      </Badge>
+      <LightMode>
+        <Badge
+          position="absolute"
+          top={2}
+          right={2}
+          colorScheme={
+            status === "Dead" ? "red" : status === "Alive" ? "green" : "purple"
+          }
+          variant="solid"
+        >
+          {status}
+        </Badge>
+      </LightMode>
 
       <Flex py={4} px={4} justifyContent="center" flexDirection="column">
         <CardInfo text={gender} icon={setGenderIcon()} title="Gender" />

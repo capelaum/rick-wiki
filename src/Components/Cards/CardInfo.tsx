@@ -9,9 +9,6 @@ import {
 
 import { IconType } from "react-icons";
 
-import { MdLocationOn } from "react-icons/md";
-import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
-
 interface CardInfoProps {
   icon: IconType;
   text: string;
@@ -25,7 +22,6 @@ export function CardInfo({ icon, text, title }: CardInfoProps) {
       _notLast={{
         marginBottom: "1rem",
       }}
-      color={useColorModeValue("gray.700", "gray.200")}
     >
       <Icon as={icon} h={4} w={4} title={title} color="cyan.600" />
 

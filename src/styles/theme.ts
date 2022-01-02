@@ -1,7 +1,27 @@
 import { extendTheme, ThemeConfig } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
+import { Dict } from "@chakra-ui/utils";
+
+const styles = {
+  global: (props: Dict) => ({
+    body: {
+      fontFamily: "body",
+      color: mode("gray.800", "whiteAlpha.900")(props),
+      bg: mode("white", "gray.800")(props),
+      lineHeight: "base",
+    },
+    "*::placeholder": {
+      color: mode("gray.400", "whiteAlpha.400")(props),
+    },
+    "*, *::before, &::after": {
+      borderColor: mode("gray.200", "whiteAlpha.300")(props),
+      wordWrap: "break-word",
+    },
+  }),
+};
 
 const themeConfig = {
+  styles,
   colors: {
     gray: {
       "900": "#181B23",
@@ -84,23 +104,6 @@ const themeConfig = {
     wider: "0.05em",
     widest: "0.1em",
   },
-  styles: {
-    global: (props) => ({
-      body: {
-        color: mode("gray.700", "gray.200")(props),
-        bg: mode("gray.300", "gray.900")(props),
-        fontFamily: "body",
-        lineHeight: "base",
-      },
-      "*::placeholder": {
-        color: mode("gray.400", "whiteAlpha.400")(props),
-      },
-      "*, *::before, &::after": {
-        borderColor: mode("gray.200", "whiteAlpha.300")(props),
-        wordWrap: "break-word",
-      },
-    }),
-  },
 };
 
 const config: ThemeConfig = {
@@ -108,4 +111,5 @@ const config: ThemeConfig = {
   useSystemColorMode: true,
 };
 
-export const theme = extendTheme({ themeConfig, config });
+const theme = extendTheme({ themeConfig, config });
+export default theme;
