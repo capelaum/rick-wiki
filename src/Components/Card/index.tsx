@@ -1,4 +1,5 @@
 import {
+  Badge,
   Box,
   chakra,
   Flex,
@@ -12,6 +13,7 @@ import {
 
 import { MdHeadset, MdLocationOn, MdEmail } from "react-icons/md";
 import { BsFillBriefcaseFill } from "react-icons/bs";
+import { CardInfo } from "../CardInfo";
 
 export function Card() {
   const boxBackground = useColorModeValue("gray.50", "gray.700");
@@ -27,62 +29,35 @@ export function Card() {
         alt="character"
       />
 
-      <Flex alignItems="center" px={6} py={3} bg="cyan.500">
-        <Icon as={MdHeadset} h={6} w={6} color="white" />
-
-        <Heading as="h2" mx={3} color="white" fontWeight="bold" fontSize="lg">
-          Name
+      <Flex
+        justifyContent="center"
+        alignItems="center"
+        px={4}
+        py={3}
+        bg="cyan.500"
+      >
+        <Heading as="h2" color="white" fontWeight="bold" fontSize="lg">
+          Dipper and Mabel Mortys
         </Heading>
       </Flex>
 
-      <Box py={4} px={6}>
-        <chakra.h1
-          fontSize="xl"
-          fontWeight="bold"
-          color={useColorModeValue("gray.800", "white")}
-        >
-          Patterson johnson
-        </chakra.h1>
+      <Box py={4} px={4}>
+        <Badge colorScheme="green" variant="subtle">
+          Alive
+        </Badge>
+        <Badge colorScheme="red" variant="subtle">
+          Dead
+        </Badge>
+        <Badge colorScheme="purple" variant="subtle">
+          Unknown
+        </Badge>
 
-        <chakra.p py={2} color={useColorModeValue("gray.700", "gray.400")}>
+        {/* <chakra.p py={2} color={useColorModeValue("gray.700", "gray.400")}>
           Full Stack maker & UI / UX Designer , love hip hop music Author of
           Building UI.
-        </chakra.p>
+        </chakra.p> */}
 
-        <Flex
-          alignItems="center"
-          mt={4}
-          color={useColorModeValue("gray.700", "gray.200")}
-        >
-          <Icon as={BsFillBriefcaseFill} h={6} w={6} mr={2} />
-
-          <chakra.h1 px={2} fontSize="sm">
-            Choc UI
-          </chakra.h1>
-        </Flex>
-
-        <Flex
-          alignItems="center"
-          mt={4}
-          color={useColorModeValue("gray.700", "gray.200")}
-        >
-          <Icon as={MdLocationOn} h={6} w={6} mr={2} />
-
-          <chakra.h1 px={2} fontSize="sm">
-            California
-          </chakra.h1>
-        </Flex>
-        <Flex
-          alignItems="center"
-          mt={4}
-          color={useColorModeValue("gray.700", "gray.200")}
-        >
-          <Icon as={MdEmail} h={6} w={6} mr={2} />
-
-          <chakra.h1 px={2} fontSize="sm">
-            patterson@example.com
-          </chakra.h1>
-        </Flex>
+        <CardInfo />
       </Box>
     </GridItem>
   );

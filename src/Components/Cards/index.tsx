@@ -16,6 +16,8 @@ export function Cards() {
         <Card />
         <Card />
         <Card />
+        <Card />
+        <Card />
       </SimpleGrid>
     </GridItem>
   );

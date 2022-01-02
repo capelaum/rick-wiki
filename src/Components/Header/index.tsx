@@ -40,6 +40,7 @@ export function Header() {
           display="flex"
           size="lg"
           cursor="pointer"
+          color={useColorModeValue("gray.700", "gray.200")}
           transition="all 0.3s"
           _hover={{
             color: "cyan.400",
