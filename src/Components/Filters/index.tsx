@@ -6,12 +6,15 @@ import {
   Stack,
   useColorModeValue,
 } from "@chakra-ui/react";
+
 import { MdArrowDropDown } from "react-icons/md";
+import { useWindowSize } from "usehooks-ts";
 
 interface FiltersProps {}
 
 export function Filters() {
   const boxBackground = useColorModeValue("white", "gray.700");
+  const { width } = useWindowSize();
 
   return (
     <GridItem
