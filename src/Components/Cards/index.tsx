@@ -5,19 +5,21 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
+import { Result } from "../../utils/types";
+
 import { Card } from "./Card";
 
-export function Cards() {
-  const flexBackground = useColorModeValue("#F9FAFB", "gray.600");
+interface CardsProps {
+  results: Result[];
+}
 
+export function Cards({ results }: CardsProps) {
   return (
     <GridItem colSpan={3}>
       <SimpleGrid minChildWidth="250px" spacing={4}>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {results.map((result) => (
+          <Card key={result.id} result={result} />
+        ))}
       </SimpleGrid>
     </GridItem>
   );
