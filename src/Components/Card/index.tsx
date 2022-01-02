@@ -4,6 +4,7 @@ import {
   Flex,
   Grid,
   GridItem,
+  Heading,
   Icon,
   Image,
   useColorModeValue,
@@ -13,31 +14,25 @@ import { MdHeadset, MdLocationOn, MdEmail } from "react-icons/md";
 import { BsFillBriefcaseFill } from "react-icons/bs";
 
 export function Card() {
-  const boxBackground = useColorModeValue("white", "gray.800");
+  const boxBackground = useColorModeValue("gray.50", "gray.700");
 
   return (
-    <GridItem
-      mx="auto"
-      bg={boxBackground}
-      shadow="lg"
-      rounded="lg"
-      overflow="hidden"
-    >
+    <GridItem bg={boxBackground} shadow="lg" rounded="lg" overflow="hidden">
       <Image
         w="full"
-        h={56}
+        h={52}
         fit="cover"
         objectPosition="center"
         src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
         alt="character"
       />
 
-      <Flex alignItems="center" px={6} py={3} bg="gray.900">
+      <Flex alignItems="center" px={6} py={3} bg="cyan.500">
         <Icon as={MdHeadset} h={6} w={6} color="white" />
 
-        <chakra.h1 mx={3} color="white" fontWeight="bold" fontSize="lg">
-          Focusing
-        </chakra.h1>
+        <Heading as="h2" mx={3} color="white" fontWeight="bold" fontSize="lg">
+          Name
+        </Heading>
       </Flex>
 
       <Box py={4} px={6}>

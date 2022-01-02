@@ -9,6 +9,7 @@ import { Cards } from "../Components/Cards";
 
 export default function Home() {
   const { toggleColorMode } = useColorMode();
+
   return (
     <>
       <Head>
@@ -16,16 +17,17 @@ export default function Home() {
       </Head>
       <Header />
 
-      <Container maxW="1200px" bg="blue">
-        <Search></Search>
+      <Container maxW="1240px" centerContent px="1rem">
+        <Search />
 
         <Grid
-          templateColumns="repeat(5, 1fr)"
-          gap={10}
+          templateColumns="repeat(4, 1fr)"
+          gap={4}
           overflow="hidden"
           py={6}
+          width="full"
         >
-          <Filters></Filters>
+          <Filters />
           <Cards />
         </Grid>
       </Container>
