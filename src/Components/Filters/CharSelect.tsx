@@ -5,6 +5,7 @@ import {
   FormControl,
   FormLabel,
   VisuallyHidden,
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 const status = ["Alive", "Dead", "Unknown"];
@@ -31,6 +32,8 @@ interface CharSelectProps {
 }
 
 export function CharSelect({ type, handleFilters }: CharSelectProps) {
+  const cyanColor = useColorModeValue("cyan.600", "cyan");
+
   function renderOptions() {
     if (type === "Status") {
       return status.map((option) => (
@@ -75,11 +78,14 @@ export function CharSelect({ type, handleFilters }: CharSelectProps) {
         size="md"
         variant="outline"
         // icon={<MdArrowDropDown />}
-        iconColor="cyan.600"
-        borderColor="cyan.600"
+        iconColor={cyanColor}
+        borderColor={cyanColor}
         colorScheme="cyan"
         _hover={{
           cursor: "pointer",
+          outline: "none",
+        }}
+        _focus={{
           outline: "none",
         }}
         onChange={(e) => handleChange(e)}

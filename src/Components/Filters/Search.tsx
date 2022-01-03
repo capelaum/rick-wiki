@@ -7,6 +7,7 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  useColorModeValue,
   VisuallyHidden,
 } from "@chakra-ui/react";
 
@@ -18,6 +19,7 @@ interface SearchProps {
 }
 
 export function Search({ handleSearch, search }: SearchProps) {
+  const cyanColor = useColorModeValue("cyan.600", "cyan");
   const [value, setValue] = useState("");
 
   const handleSearchSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -47,12 +49,14 @@ export function Search({ handleSearch, search }: SearchProps) {
             placeholder="Search for characters"
             size="md"
             s
-            borderColor="cyan.600"
-            focusBorderColor="cyan.700"
+            borderColor={cyanColor}
             type="text"
             onChange={(e) => handleChange(e)}
             value={value}
             _hover={{
+              outline: "none",
+            }}
+            _focus={{
               outline: "none",
             }}
             _placeholder={{
@@ -65,7 +69,7 @@ export function Search({ handleSearch, search }: SearchProps) {
               aria-label="Search database"
               icon={<SearchIcon />}
               colorScheme="cyan"
-              color="cyan.600"
+              color={cyanColor}
               variant="ghost"
               type="submit"
               _focus={{

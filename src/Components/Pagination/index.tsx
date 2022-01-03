@@ -1,4 +1,10 @@
-import { Button, ButtonGroup, Flex, forwardRef } from "@chakra-ui/react";
+import {
+  Button,
+  ButtonGroup,
+  Flex,
+  forwardRef,
+  useColorModeValue,
+} from "@chakra-ui/react";
 
 import Pagination from "@choc-ui/paginator";
 
@@ -18,6 +24,9 @@ interface PaginationProps {
 }
 
 export function PaginationComponent({ info, setPage, page }: PaginationProps) {
+  const cyanColor = useColorModeValue("cyan.600", "cyan");
+  const grayColor = useColorModeValue("white", "gray.700");
+
   const Prev = forwardRef((props, ref) => (
     <Button ref={ref} {...props}>
       <MdKeyboardArrowLeft size={20} />
@@ -70,7 +79,16 @@ export function PaginationComponent({ info, setPage, page }: PaginationProps) {
       <Pagination
         baseStyles={{
           border: "1px solid",
-          borderColor: "cyan.600",
+          borderColor: cyanColor,
+          color: cyanColor,
+        }}
+        activeStyles={{
+          bg: cyanColor,
+          color: grayColor,
+        }}
+        hoverStyles={{
+          bg: cyanColor,
+          color: grayColor,
         }}
         paginationProps={{ display: "flex" }}
         colorScheme="cyan"

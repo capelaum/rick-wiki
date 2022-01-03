@@ -4,7 +4,6 @@ import {
   Flex,
   HStack,
   IconButton,
-  useColorMode,
   useColorModeValue,
   useDisclosure,
   VStack,
@@ -15,8 +14,9 @@ import { HeaderButtons } from "./HeaderButtons";
 import { Logo } from "./Logo";
 
 export function Header() {
-  const { colorMode, toggleColorMode } = useColorMode();
   const background = useColorModeValue("white", "gray.700");
+  const cyanColor = useColorModeValue("cyan.600", "cyan");
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -24,7 +24,7 @@ export function Header() {
       as="header"
       bg={background}
       borderBottom="1px"
-      borderColor="cyan.600"
+      borderColor={cyanColor}
       py="1rem"
       justifyContent="center"
       alignItems="center"
@@ -47,7 +47,7 @@ export function Header() {
             display={isOpen ? "none" : "flex"}
             aria-label="Open menu"
             fontSize="24px"
-            color="cyan.600"
+            color={cyanColor}
             variant="ghost"
             icon={<AiOutlineMenu />}
             onClick={onOpen}
@@ -57,7 +57,7 @@ export function Header() {
           />
 
           <CloseButton
-            color="cyan.600"
+            color={cyanColor}
             aria-label="Close menu"
             onClick={onClose}
             display={isOpen ? "flex" : "none"}
