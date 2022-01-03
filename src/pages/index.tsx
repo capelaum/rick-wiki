@@ -41,14 +41,6 @@ export default function Home() {
     setSearch(value);
   }, []);
 
-  const nextPage = useCallback((): void => {
-    setPage((page) => page + 1);
-  }, []);
-
-  const prevPage = useCallback((): void => {
-    setPage((page) => page - 1);
-  }, []);
-
   return (
     <>
       <Head>
@@ -74,14 +66,7 @@ export default function Home() {
           width="full"
           alignItems="center"
         >
-          <Cards
-            info={info}
-            results={results}
-            nextPage={nextPage}
-            prevPage={prevPage}
-            setPage={setPage}
-            page={page}
-          />
+          <Cards info={info} results={results} setPage={setPage} page={page} />
         </Grid>
       </Container>
     </>

@@ -5,20 +5,12 @@ import Pagination from "@choc-ui/paginator";
 import { Info } from "../../utils/types";
 
 interface PaginationProps {
-  nextPage: () => void;
-  prevPage: () => void;
   setPage: (page: number) => void;
   page: number;
   info: Info;
 }
 
-export function PaginationComponent({
-  info,
-  nextPage,
-  prevPage,
-  setPage,
-  page,
-}: PaginationProps) {
+export function PaginationComponent({ info, setPage, page }: PaginationProps) {
   return (
     <Flex w="full" pb={5} alignItems="center" justifyContent="center">
       <Pagination

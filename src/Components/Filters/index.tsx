@@ -15,6 +15,10 @@ export function Filters() {
         iconColor="cyan.600"
         borderColor="cyan.600"
         colorScheme="cyan"
+        _hover={{
+          cursor: "pointer",
+          outline: "none",
+        }}
       >
         <option value="alive">Alive</option>
         <option value="dead">Dead</option>
@@ -27,6 +31,10 @@ export function Filters() {
         icon={<MdArrowDropDown />}
         iconColor="cyan.600"
         borderColor="cyan.600"
+        _hover={{
+          cursor: "pointer",
+          outline: "none",
+        }}
       >
         <option value="human">Human</option>
         <option value="alien">Alien</option>
@@ -47,6 +55,10 @@ export function Filters() {
         icon={<MdArrowDropDown />}
         iconColor="cyan.600"
         borderColor="cyan.600"
+        _hover={{
+          cursor: "pointer",
+          outline: "none",
+        }}
       >
         <option value="male">Male</option>
         <option value="female">Female</option>

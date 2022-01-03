@@ -1,19 +1,23 @@
 import {
-  Button,
+  Box,
+  CloseButton,
   Flex,
-  Heading,
-  Stack,
-  Text,
-  Tooltip,
+  HStack,
+  IconButton,
   useColorMode,
   useColorModeValue,
+  useDisclosure,
+  VStack,
 } from "@chakra-ui/react";
+import { AiOutlineMenu } from "react-icons/ai";
 
-import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
+import { HeaderButtons } from "./HeaderButtons";
+import { Logo } from "./Logo";
 
 export function Header() {
   const { colorMode, toggleColorMode } = useColorMode();
   const background = useColorModeValue("white", "gray.700");
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Flex
@@ -23,60 +27,56 @@ export function Header() {
       borderColor="cyan.600"
       py="1rem"
       justifyContent="center"
+      alignItems="center"
       px="1.25rem"
     >
       <Flex
         maxWidth="1200px"
         w="100%"
-        justifyContent="space-between"
-        alignItems="center"
-        flexDirection={["column", "row"]}
+        justifyContent={["center", "space-between"]}
+        alignItems={["flex-start", "center"]}
+        flexDirection={["column", "column", "row"]}
       >
-        <Heading
-          as="h1"
-          display="flex"
-          size="lg"
-          cursor="pointer"
-          color={useColorModeValue("gray.700", "gray.200")}
-          transition="all 0.3s"
-          _hover={{
-            color: "cyan.400",
-          }}
-        >
-          Rick & Morty
-          <Text as="span" pl={2} color="cyan.400">
-            Wiki
-          </Text>
-        </Heading>
+        <Logo />
+        <HStack spacing={2} display={{ base: "none", sm: "flex" }}>
+          <HeaderButtons isRowDirection />
+        </HStack>
 
-        <Stack direction={["column-reverse", "row"]} spacing={2}>
-          <Button colorScheme="cyan" variant="ghost" focusBorderColor="none">
-            Characters
-          </Button>
-          <Button colorScheme="cyan" variant="ghost">
-            Episodes
-          </Button>
-          <Button colorScheme="cyan" variant="ghost">
-            Locations
-          </Button>
+        <Box display={{ base: "inline-flex", sm: "none" }} w="full">
+          <IconButton
+            display={isOpen ? "none" : "flex"}
+            aria-label="Open menu"
+            fontSize="24px"
+            color="cyan.600"
+            variant="ghost"
+            icon={<AiOutlineMenu />}
+            onClick={onOpen}
+            pos="absolute"
+            top={3.5}
+            right={3.5}
+          />
 
-          <Tooltip
-            hasArrow
-            label={colorMode === "light" ? "Dark" : "Light"}
-            placement="bottom-end"
+          <CloseButton
+            color="cyan.600"
+            aria-label="Close menu"
+            onClick={onClose}
+            display={isOpen ? "flex" : "none"}
+            pos="absolute"
+            top={3.5}
+            right={3.5}
+            size="lg"
+          />
+
+          <VStack
+            display={isOpen ? "flex" : "none"}
+            flexDirection="column"
+            w="full"
+            pt={4}
+            shadow="sm"
           >
-            <Button
-              colorScheme="cyan"
-              variant="ghost"
-              onClick={toggleColorMode}
-              aria-label="Light / Dark mode"
-              defaultChecked
-              size="md"
-            >
-              {colorMode === "light" ? <MdDarkMode /> : <MdOutlineLightMode />}
-            </Button>
-          </Tooltip>
-        </Stack>
+            <HeaderButtons />
+          </VStack>
+        </Box>
       </Flex>
     </Flex>
   );

@@ -16,30 +16,15 @@ import { Card } from "./Card";
 
 interface CardsProps {
   results: Result[];
-  nextPage: () => void;
-  prevPage: () => void;
   setPage: (page: number) => void;
   page: number;
   info: Info;
 }
 
-export function Cards({
-  info,
-  results,
-  nextPage,
-  prevPage,
-  setPage,
-  page,
-}: CardsProps) {
+export function Cards({ info, results, setPage, page }: CardsProps) {
   return (
     <GridItem colSpan={4}>
-      <PaginationComponent
-        info={info}
-        nextPage={nextPage}
-        prevPage={prevPage}
-        page={page}
-        setPage={setPage}
-      />
+      <PaginationComponent info={info} page={page} setPage={setPage} />
 
       {results.length > 0 ? (
         <SimpleGrid minChildWidth="250px" spacing={4} justifyItems="center">

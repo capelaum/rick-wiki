@@ -6,9 +6,11 @@ import {
   FormHelperText,
   FormLabel,
   Icon,
+  IconButton,
   Input,
   InputGroup,
   InputLeftElement,
+  InputRightElement,
 } from "@chakra-ui/react";
 
 import { SearchIcon } from "@chakra-ui/icons";
@@ -31,9 +33,6 @@ export function Search({ onSearch, search, setPage }: SearchProps) {
     <form onSubmit={(e) => handleSearch(e)}>
       <Flex w={["full", "full", "full", "550px"]}>
         <InputGroup>
-          <InputLeftElement pointerEvents="none">
-            <Icon as={SearchIcon} color="gray.500" h={4} w={4} title="Search" />
-          </InputLeftElement>
           <Input
             id="character"
             name="character"
@@ -46,21 +45,28 @@ export function Search({ onSearch, search, setPage }: SearchProps) {
               onSearch(e.target.value);
               setPage(1);
             }}
+            _hover={{
+              outline: "none",
+            }}
             _placeholder={{
               color: "gray.500",
               fontSize: "lg",
             }}
           />
+          <InputRightElement>
+            <IconButton
+              aria-label="Search database"
+              icon={<SearchIcon />}
+              colorScheme="cyan"
+              color="cyan.600"
+              variant="ghost"
+              type="submit"
+              _focus={{
+                outline: "none",
+              }}
+            />
+          </InputRightElement>
         </InputGroup>
-        <Button
-          ml={4}
-          colorScheme="cyan"
-          variant="solid"
-          size="md"
-          type="submit"
-        >
-          Search
-        </Button>
       </Flex>
     </form>
   );
