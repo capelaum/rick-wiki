@@ -17,8 +17,8 @@ import {
 } from "react-icons/md";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { RiAliensFill, RiQuestionFill } from "react-icons/ri";
-import { FaRobot, FaRedditAlien } from "react-icons/fa";
-import { GiGreekTemple, GiAlienSkull } from "react-icons/gi";
+import { FaRobot, FaRedditAlien, FaPoop } from "react-icons/fa";
+import { GiGreekTemple, GiAlienSkull, GiAnimalHide } from "react-icons/gi";
 
 import { CardInfo } from "./CardInfo";
 
@@ -30,7 +30,7 @@ interface CardProps {
 }
 
 export function Card({ result }: CardProps) {
-  const boxBackground = useColorModeValue("gray.50", "gray.700");
+  const boxBackground = useColorModeValue("white", "gray.700");
   const { name, image, status, origin, location, gender, species } = result;
 
   function setGenderIcon(): IconType {
@@ -64,6 +64,10 @@ export function Card({ result }: CardProps) {
         return GiAlienSkull;
       case "Disease":
         return MdCoronavirus;
+      case "Poopybutthole":
+        return FaPoop;
+      case "Animal":
+        return GiAnimalHide;
       case "Unknown":
         return RiQuestionFill;
       default:
