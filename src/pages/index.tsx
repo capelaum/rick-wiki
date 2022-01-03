@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Head from "next/head";
 
-import { Container, Flex, Spinner } from "@chakra-ui/react";
+import { Container, Flex } from "@chakra-ui/react";
 
 import { Header } from "../Components/Header";
 import { Filters } from "../Components/Filters";
@@ -12,7 +12,6 @@ import { api } from "../services/api";
 import { Info, Result } from "../utils/types";
 
 import { useDebounce } from "usehooks-ts";
-import { Loading } from "../Components/Cards/Loading";
 
 export default function Home() {
   const [results, setResults] = useState<Result[]>([]);
@@ -33,7 +32,9 @@ export default function Home() {
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
+  }, [results]);
 
+  useEffect(() => {
     (async () => {
       const query = `&name=${debouncedSearch}&status=${status}&gender=${gender}&species=${species}`;
       await api

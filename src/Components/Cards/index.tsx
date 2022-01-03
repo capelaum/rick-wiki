@@ -1,11 +1,4 @@
-import {
-  Box,
-  Flex,
-  GridItem,
-  Heading,
-  Icon,
-  SimpleGrid,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, Icon, SimpleGrid } from "@chakra-ui/react";
 
 import { Info, Result } from "../../utils/types";
 import { PaginationComponent } from "../Pagination";

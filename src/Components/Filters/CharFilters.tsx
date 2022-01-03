@@ -1,4 +1,4 @@
-import { Select, Stack } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
 
 import { CharSelect } from "./CharSelect";
 
