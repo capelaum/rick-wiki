@@ -2,12 +2,7 @@ import { Flex, Spinner } from "@chakra-ui/react";
 
 export function Loading() {
   return (
-    <Flex
-      w="full"
-      h="calc(100vh - 400px)"
-      justifyContent="center"
-      alignItems="center"
-    >
+    <Flex w="full" mt={32} justifyContent="center" alignItems="center">
       <Spinner
         color="cyan.600"
         size="xl"

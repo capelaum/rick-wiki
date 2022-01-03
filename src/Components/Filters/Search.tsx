@@ -1,4 +1,4 @@
-import { FormEvent } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import {
   chakra,
   Flex,
@@ -18,9 +18,19 @@ interface SearchProps {
 }
 
 export function Search({ handleSearch, search }: SearchProps) {
+  const [value, setValue] = useState("");
+
   const handleSearchSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     handleSearch(event.target["character"].value);
+  };
+
+  useEffect(() => {
+    handleSearch(value);
+  }, [value, handleSearch]);
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
   };
 
   return (
@@ -36,10 +46,12 @@ export function Search({ handleSearch, search }: SearchProps) {
             title="Search character"
             placeholder="Search for characters"
             size="md"
+            s
             borderColor="cyan.600"
             focusBorderColor="cyan.700"
             type="text"
-            onChange={(e) => handleSearch(e.target.value)}
+            onChange={(e) => handleChange(e)}
+            value={value}
             _hover={{
               outline: "none",
             }}

@@ -36,9 +36,10 @@ export default function Home() {
 
   useEffect(() => {
     (async () => {
-      const query = `&name=${debouncedSearch}&status=${status}&gender=${gender}&species=${species}`;
       await api
-        .get(`/character/?page=${page}${query}`)
+        .get(
+          `/character/?page=${page}&name=${debouncedSearch}&status=${status}&gender=${gender}&species=${species}`,
+        )
         .then((res) => {
           setResults(res.data.results);
           setInfo(res.data.info);
@@ -50,7 +51,7 @@ export default function Home() {
     })();
   }, [page, debouncedSearch, status, gender, species]);
 
-  const handleSearch = useCallback(async (value: string) => {
+  const handleSearch = useCallback((value: string) => {
     setSearch(value);
     setPage(1);
   }, []);
