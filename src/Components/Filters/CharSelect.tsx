@@ -1,6 +1,11 @@
 import { ChangeEvent } from "react";
 
-import { Select } from "@chakra-ui/react";
+import {
+  Select,
+  FormControl,
+  FormLabel,
+  VisuallyHidden,
+} from "@chakra-ui/react";
 
 const status = ["Alive", "Dead", "Unknown"];
 
@@ -57,21 +62,30 @@ export function CharSelect({ type, handleFilters }: CharSelectProps) {
   }
 
   return (
-    <Select
-      placeholder={type}
-      size="md"
-      variant="outline"
-      // icon={<MdArrowDropDown />}
-      iconColor="cyan.600"
-      borderColor="cyan.600"
-      colorScheme="cyan"
-      _hover={{
-        cursor: "pointer",
-        outline: "none",
-      }}
-      onChange={(e) => handleChange(e)}
-    >
-      {renderOptions()}
-    </Select>
+    <FormControl>
+      <VisuallyHidden>
+        <FormLabel htmlFor={type}>{type}</FormLabel>
+      </VisuallyHidden>
+      <Select
+        id={type}
+        aria-label={type}
+        name={type}
+        title={type}
+        placeholder={type}
+        size="md"
+        variant="outline"
+        // icon={<MdArrowDropDown />}
+        iconColor="cyan.600"
+        borderColor="cyan.600"
+        colorScheme="cyan"
+        _hover={{
+          cursor: "pointer",
+          outline: "none",
+        }}
+        onChange={(e) => handleChange(e)}
+      >
+        {renderOptions()}
+      </Select>
+    </FormControl>
   );
 }

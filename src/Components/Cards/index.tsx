@@ -13,20 +13,24 @@ import { PaginationComponent } from "../Pagination";
 import { BsEmojiDizzy } from "react-icons/bs";
 
 import { Card } from "./Card";
+import { Loading } from "./Loading";
 
 interface CardsProps {
   results: Result[];
   setPage: (page: number) => void;
   page: number;
   info: Info;
+  isLoading: boolean;
 }
 
-export function Cards({ info, results, setPage, page }: CardsProps) {
+export function Cards({ info, results, setPage, page, isLoading }: CardsProps) {
   return (
-    <>
+    <Box w="full">
       <PaginationComponent info={info} page={page} setPage={setPage} />
 
-      {results.length > 0 ? (
+      {isLoading ? (
+        <Loading />
+      ) : results.length > 0 ? (
         <SimpleGrid
           minChildWidth="250px"
           spacingX="1.25rem"
@@ -45,6 +49,6 @@ export function Cards({ info, results, setPage, page }: CardsProps) {
           </Heading>
         </Flex>
       )}
-    </>
+    </Box>
   );
 }

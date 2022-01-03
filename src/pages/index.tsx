@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Head from "next/head";
 
-import { Container, Flex, Grid, Stack } from "@chakra-ui/react";
+import { Container, Flex, Spinner } from "@chakra-ui/react";
 
 import { Header } from "../Components/Header";
 import { Filters } from "../Components/Filters";
@@ -9,9 +9,10 @@ import { Cards } from "../Components/Cards";
 
 import { api } from "../services/api";
 
-import { Data, Info, Result } from "../utils/types";
+import { Info, Result } from "../utils/types";
 
 import { useDebounce } from "usehooks-ts";
+import { Loading } from "../Components/Cards/Loading";
 
 export default function Home() {
   const [results, setResults] = useState<Result[]>([]);
@@ -22,13 +23,19 @@ export default function Home() {
   const [status, setStatus] = useState("");
   const [species, setSpecies] = useState("");
   const [gender, setGender] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const debouncedSearch = useDebounce<string>(search, 500);
 
   useEffect(() => {
-    const query = `&name=${debouncedSearch}&status=${status}&gender=${gender}&species=${species}`;
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
 
     (async () => {
+      const query = `&name=${debouncedSearch}&status=${status}&gender=${gender}&species=${species}`;
       await api
         .get(`/character/?page=${page}${query}`)
         .then((res) => {
@@ -42,7 +49,7 @@ export default function Home() {
     })();
   }, [page, debouncedSearch, status, gender, species]);
 
-  const handleSearch = useCallback((value: string) => {
+  const handleSearch = useCallback(async (value: string) => {
     setSearch(value);
     setPage(1);
   }, []);
@@ -75,7 +82,13 @@ export default function Home() {
         />
 
         <Flex direction="column" w="full" py={8}>
-          <Cards info={info} results={results} setPage={setPage} page={page} />
+          <Cards
+            info={info}
+            results={results}
+            setPage={setPage}
+            page={page}
+            isLoading={isLoading}
+          />
         </Flex>
       </Container>
     </>

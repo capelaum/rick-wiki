@@ -29,7 +29,7 @@ export function Card({ result }: CardProps) {
       position="relative"
       border="1px solid"
       borderColor="cyan.600"
-      w="280px"
+      w="250px"
     >
       <Image
         w="full"

@@ -1,6 +1,7 @@
 import { useState, FormEvent, ChangeEvent } from "react";
 import {
   Button,
+  chakra,
   Flex,
   FormControl,
   FormHelperText,
@@ -11,6 +12,7 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
+  VisuallyHidden,
 } from "@chakra-ui/react";
 
 import { SearchIcon } from "@chakra-ui/icons";
@@ -21,18 +23,22 @@ interface SearchProps {
 }
 
 export function Search({ handleSearch, search }: SearchProps) {
-  const handleSearchSSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSearchSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     handleSearch(event.target["character"].value);
   };
 
   return (
-    <form onSubmit={(e) => handleSearchSSubmit(e)}>
+    <chakra.form onSubmit={(e) => handleSearchSubmit(e)}>
       <Flex w={["full", "full", "full", "550px"]}>
+        <VisuallyHidden>
+          <FormLabel htmlFor="character">Search character</FormLabel>
+        </VisuallyHidden>
         <InputGroup>
           <Input
             id="character"
             name="character"
+            title="Search character"
             placeholder="Search for characters"
             size="md"
             borderColor="cyan.600"
@@ -62,6 +68,6 @@ export function Search({ handleSearch, search }: SearchProps) {
           </InputRightElement>
         </InputGroup>
       </Flex>
-    </form>
+    </chakra.form>
   );
 }
