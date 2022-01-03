@@ -72,6 +72,7 @@ export default function Home() {
           overflow="hidden"
           py={6}
           width="full"
+          alignItems="center"
         >
           <Cards
             info={info}

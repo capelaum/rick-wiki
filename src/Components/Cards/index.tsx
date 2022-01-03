@@ -42,7 +42,7 @@ export function Cards({
       />
 
       {results.length > 0 ? (
-        <SimpleGrid minChildWidth="250px" maxChildWidth="300px" spacing={4}>
+        <SimpleGrid minChildWidth="250px" spacing={4} justifyItems="center">
           {results.map((result) => (
             <Card key={result.id} result={result} />
           ))}
