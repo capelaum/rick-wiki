@@ -4,7 +4,6 @@ import Head from "next/head";
 import { Container, Grid, Stack } from "@chakra-ui/react";
 
 import { Header } from "../Components/Header";
-import { Search } from "../Components/Search";
 import { Filters } from "../Components/Filters";
 import { Cards } from "../Components/Cards";
 
@@ -49,15 +48,7 @@ export default function Home() {
       <Header />
 
       <Container maxW="1240px" centerContent px="1.25rem">
-        <Stack
-          direction={["column", "column", "column", "row"]}
-          spacing={4}
-          w="full"
-          py={4}
-        >
-          <Search onSearch={onSearch} search={search} setPage={setPage} />
-          <Filters />
-        </Stack>
+        <Filters onSearch={onSearch} setPage={setPage} search={search} />
         <Grid
           templateColumns="repeat(4, 1fr)"
           gap={4}
