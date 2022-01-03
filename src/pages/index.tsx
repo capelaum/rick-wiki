@@ -26,11 +26,11 @@ export default function Home() {
   const debouncedSearch = useDebounce<string>(search, 500);
 
   useEffect(() => {
+    const query = `&name=${debouncedSearch}&status=${status}&gender=${gender}&species=${species}`;
+
     (async () => {
       await api
-        .get(
-          `/character/?page=${page}&name=${debouncedSearch}&status=${status}&gender=${gender}&species=${species}`,
-        )
+        .get(`/character/?page=${page}${query}`)
         .then((res) => {
           setResults(res.data.results);
           setInfo(res.data.info);
