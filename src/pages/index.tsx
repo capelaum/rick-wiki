@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Head from "next/head";
 
-import { Container, Grid, Stack } from "@chakra-ui/react";
+import { Container, Flex, Grid, Stack } from "@chakra-ui/react";
 
 import { Header } from "../Components/Header";
 import { Filters } from "../Components/Filters";
@@ -73,16 +73,10 @@ export default function Home() {
           search={search}
           handleFilters={handleFilters}
         />
-        <Grid
-          templateColumns="repeat(4, 1fr)"
-          gap={4}
-          overflow="hidden"
-          py={6}
-          width="full"
-          alignItems="center"
-        >
+
+        <Flex direction="column" w="full" py={8}>
           <Cards info={info} results={results} setPage={setPage} page={page} />
-        </Grid>
+        </Flex>
       </Container>
     </>
   );

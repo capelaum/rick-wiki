@@ -15,7 +15,7 @@ export function Filters({ handleSearch, handleFilters, search }: FiltersProps) {
       direction={["column", "column", "column", "row"]}
       spacing={4}
       w="full"
-      py={4}
+      pt={8}
     >
       <Search handleSearch={handleSearch} search={search} />
       <CharFilters handleFilters={handleFilters} />

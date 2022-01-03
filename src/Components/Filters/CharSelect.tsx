@@ -1,5 +1,6 @@
-import { Select } from "@chakra-ui/react";
 import { ChangeEvent } from "react";
+
+import { Select } from "@chakra-ui/react";
 
 const status = ["Alive", "Dead", "Unknown"];
 

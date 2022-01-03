@@ -23,11 +23,16 @@ interface CardsProps {
 
 export function Cards({ info, results, setPage, page }: CardsProps) {
   return (
-    <GridItem colSpan={4}>
+    <>
       <PaginationComponent info={info} page={page} setPage={setPage} />
 
       {results.length > 0 ? (
-        <SimpleGrid minChildWidth="250px" spacing={4} justifyItems="center">
+        <SimpleGrid
+          minChildWidth="250px"
+          spacingX="1.25rem"
+          spacingY="2rem"
+          justifyItems="center"
+        >
           {results.map((result) => (
             <Card key={result.id} result={result} />
           ))}
@@ -40,6 +45,6 @@ export function Cards({ info, results, setPage, page }: CardsProps) {
           </Heading>
         </Flex>
       )}
-    </GridItem>
+    </>
   );
 }
