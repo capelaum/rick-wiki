@@ -10,24 +10,36 @@ import { Cards } from "../Components/Cards";
 
 import { api } from "../services/api";
 
-import { Info, Result } from "../utils/types";
+import { Data, Info, Result } from "../utils/types";
 
 export default function Home() {
   const [page, setPage] = useState(1);
+  const [data, setData] = useState<Data | void>({} as Data);
+
   const [results, setResults] = useState<Result[]>([]);
   const [info, setInfo] = useState<Info>({} as Info);
-
-  console.log("🚀 ~ info", info);
-  console.log("🚀 ~ page", page);
+  const [search, setSearch] = useState("");
+  console.log("🚀 ~ search", search);
 
   useEffect(() => {
     (async () => {
-      await api.get(`/character/?page=${page}`).then((res) => {
-        setResults(res.data.results);
-        setInfo(res.data.info);
-      });
+      await api
+        .get(`/character/?page=${page}&name=${search}`)
+        .then((res) => {
+          setResults(res.data.results);
+          setInfo(res.data.info);
+        })
+        .catch((err) => {
+          console.error("err", err);
+          setResults([]);
+          setInfo({} as Info);
+        });
     })();
-  }, [page]);
+  }, [page, search]);
+
+  const onSearch = useCallback((value: string) => {
+    setSearch(value);
+  }, []);
 
   const nextPage = useCallback((): void => {
     setPage((page) => page + 1);
@@ -51,7 +63,7 @@ export default function Home() {
           w="full"
           py={4}
         >
-          <Search />
+          <Search onSearch={onSearch} search={search} setPage={setPage} />
           <Filters />
         </Stack>
         <Grid

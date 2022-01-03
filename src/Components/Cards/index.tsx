@@ -1,14 +1,16 @@
 import {
   Box,
-  Grid,
+  Flex,
   GridItem,
+  Heading,
+  Icon,
   SimpleGrid,
-  useColorModeValue,
 } from "@chakra-ui/react";
-import { useWindowSize } from "usehooks-ts";
 
 import { Result } from "../../utils/types";
 import { Pagination } from "../Pagination";
+
+import { BsEmojiDizzy } from "react-icons/bs";
 
 import { Card } from "./Card";
 
@@ -20,22 +22,23 @@ interface CardsProps {
 }
 
 export function Cards({ results, nextPage, prevPage, page }: CardsProps) {
-  const { width } = useWindowSize();
-
   return (
     <GridItem colSpan={4}>
       <Pagination nextPage={nextPage} prevPage={prevPage} page={page} />
 
-      {results ? (
+      {results.length > 0 ? (
         <SimpleGrid minChildWidth="250px" spacing={4}>
           {results.map((result) => (
             <Card key={result.id} result={result} />
           ))}
         </SimpleGrid>
       ) : (
-        <Box>
-          <h1>No Characters found... 😕</h1>
-        </Box>
+        <Flex justifyContent="center" w="full">
+          <Heading as="h1" size="lg">
+            No Characters found{" "}
+            <Icon as={BsEmojiDizzy} size="md" color="cyan.600" />
+          </Heading>
+        </Flex>
       )}
     </GridItem>
   );

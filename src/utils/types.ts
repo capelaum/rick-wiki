@@ -26,7 +26,7 @@ export type Result = {
   created: string;
 };
 
-export interface DataProps {
+export interface Data {
   info: Info;
   results: Result[];
 }

@@ -30,6 +30,7 @@ export function Header() {
         w="100%"
         justifyContent="space-between"
         alignItems="center"
+        flexDirection={["column", "row"]}
       >
         <Heading
           as="h1"
@@ -48,8 +49,8 @@ export function Header() {
           </Text>
         </Heading>
 
-        <Stack direction={["column", "row"]} spacing={2}>
-          <Button colorScheme="cyan" variant="ghost">
+        <Stack direction={["column-reverse", "row"]} spacing={2}>
+          <Button colorScheme="cyan" variant="ghost" focusBorderColor="none">
             Characters
           </Button>
           <Button colorScheme="cyan" variant="ghost">
