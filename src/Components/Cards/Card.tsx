@@ -80,6 +80,7 @@ export function Card({ result }: CardProps) {
       position="relative"
       border="1px solid"
       borderColor="cyan.600"
+      maxW="sm"
     >
       <Image
         w="full"

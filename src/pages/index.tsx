@@ -12,30 +12,30 @@ import { api } from "../services/api";
 
 import { Data, Info, Result } from "../utils/types";
 
-export default function Home() {
-  const [page, setPage] = useState(1);
-  const [data, setData] = useState<Data | void>({} as Data);
+import { useDebounce } from "usehooks-ts";
 
+export default function Home() {
   const [results, setResults] = useState<Result[]>([]);
   const [info, setInfo] = useState<Info>({} as Info);
   const [search, setSearch] = useState("");
-  console.log("🚀 ~ search", search);
+  const [page, setPage] = useState(1);
+
+  const debouncedSearch = useDebounce<string>(search, 500);
 
   useEffect(() => {
     (async () => {
       await api
-        .get(`/character/?page=${page}&name=${search}`)
+        .get(`/character/?page=${page}&name=${debouncedSearch}`)
         .then((res) => {
           setResults(res.data.results);
           setInfo(res.data.info);
         })
-        .catch((err) => {
-          console.error("err", err);
+        .catch(() => {
           setResults([]);
           setInfo({} as Info);
         });
     })();
-  }, [page, search]);
+  }, [page, debouncedSearch]);
 
   const onSearch = useCallback((value: string) => {
     setSearch(value);
@@ -74,9 +74,11 @@ export default function Home() {
           width="full"
         >
           <Cards
+            info={info}
             results={results}
             nextPage={nextPage}
             prevPage={prevPage}
+            setPage={setPage}
             page={page}
           />
         </Grid>

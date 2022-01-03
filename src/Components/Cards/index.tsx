@@ -7,8 +7,8 @@ import {
   SimpleGrid,
 } from "@chakra-ui/react";
 
-import { Result } from "../../utils/types";
-import { Pagination } from "../Pagination";
+import { Info, Result } from "../../utils/types";
+import { PaginationComponent } from "../Pagination";
 
 import { BsEmojiDizzy } from "react-icons/bs";
 
@@ -18,16 +18,31 @@ interface CardsProps {
   results: Result[];
   nextPage: () => void;
   prevPage: () => void;
+  setPage: (page: number) => void;
   page: number;
+  info: Info;
 }
 
-export function Cards({ results, nextPage, prevPage, page }: CardsProps) {
+export function Cards({
+  info,
+  results,
+  nextPage,
+  prevPage,
+  setPage,
+  page,
+}: CardsProps) {
   return (
     <GridItem colSpan={4}>
-      <Pagination nextPage={nextPage} prevPage={prevPage} page={page} />
+      <PaginationComponent
+        info={info}
+        nextPage={nextPage}
+        prevPage={prevPage}
+        page={page}
+        setPage={setPage}
+      />
 
       {results.length > 0 ? (
-        <SimpleGrid minChildWidth="250px" spacing={4}>
+        <SimpleGrid minChildWidth="250px" maxChildWidth="300px" spacing={4}>
           {results.map((result) => (
             <Card key={result.id} result={result} />
           ))}

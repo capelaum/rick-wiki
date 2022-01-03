@@ -20,20 +20,15 @@ interface SearchProps {
 }
 
 export function Search({ onSearch, search, setPage }: SearchProps) {
-  const handleSearch = async (
-    event: FormEvent | ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleSearch = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!search.trim()) {
-      return;
-    }
-
+    onSearch(event.target["character"].value);
     setPage(1);
   };
 
   return (
-    <form onSubmit={handleSearch}>
+    <form onSubmit={(e) => handleSearch(e)}>
       <Flex w={["full", "full", "full", "550px"]}>
         <InputGroup>
           <InputLeftElement pointerEvents="none">
@@ -41,12 +36,16 @@ export function Search({ onSearch, search, setPage }: SearchProps) {
           </InputLeftElement>
           <Input
             id="character"
+            name="character"
             placeholder="Search for characters"
             size="md"
             borderColor="cyan.600"
             focusBorderColor="cyan.700"
             type="text"
-            onChange={(e) => onSearch(e.target.value)}
+            onChange={(e) => {
+              onSearch(e.target.value);
+              setPage(1);
+            }}
             _placeholder={{
               color: "gray.500",
               fontSize: "lg",
