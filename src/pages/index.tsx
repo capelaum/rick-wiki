@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Head from "next/head";
 
 import { Container, Grid, Stack } from "@chakra-ui/react";
@@ -29,6 +29,14 @@ export default function Home() {
     })();
   }, [page]);
 
+  const nextPage = useCallback((): void => {
+    setPage((page) => page + 1);
+  }, []);
+
+  const prevPage = useCallback((): void => {
+    setPage((page) => page - 1);
+  }, []);
+
   return (
     <>
       <Head>
@@ -53,7 +61,12 @@ export default function Home() {
           py={6}
           width="full"
         >
-          <Cards results={results} onPageChange={setPage} page={page} />
+          <Cards
+            results={results}
+            nextPage={nextPage}
+            prevPage={prevPage}
+            page={page}
+          />
         </Grid>
       </Container>
     </>

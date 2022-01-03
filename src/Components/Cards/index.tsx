@@ -14,16 +14,17 @@ import { Card } from "./Card";
 
 interface CardsProps {
   results: Result[];
-  onPageChange: (pageNumber: number) => void;
+  nextPage: () => void;
+  prevPage: () => void;
   page: number;
 }
 
-export function Cards({ results, onPageChange, page }: CardsProps) {
+export function Cards({ results, nextPage, prevPage, page }: CardsProps) {
   const { width } = useWindowSize();
 
   return (
     <GridItem colSpan={4}>
-      <Pagination setPageNumber={onPageChange} page={page} />
+      <Pagination nextPage={nextPage} prevPage={prevPage} page={page} />
 
       {results ? (
         <SimpleGrid minChildWidth="250px" spacing={4}>

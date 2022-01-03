@@ -1,12 +1,8 @@
 import {
   Badge,
-  Box,
-  chakra,
   Flex,
-  Grid,
   GridItem,
   Heading,
-  Icon,
   Image,
   LightMode,
   useColorModeValue,
@@ -21,8 +17,8 @@ import {
 } from "react-icons/md";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { RiAliensFill, RiQuestionFill } from "react-icons/ri";
-import { FaRobot, FaGenderless, FaRedditAlien } from "react-icons/fa";
-import { GiGreekTemple, GiAlienStare, GiAlienSkull } from "react-icons/gi";
+import { FaRobot, FaRedditAlien } from "react-icons/fa";
+import { GiGreekTemple, GiAlienSkull } from "react-icons/gi";
 
 import { CardInfo } from "./CardInfo";
 

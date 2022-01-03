@@ -1,11 +1,4 @@
-import {
-  chakra,
-  Flex,
-  Heading,
-  Icon,
-  Text,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Flex, Heading, Icon, useColorModeValue } from "@chakra-ui/react";
 
 import { IconType } from "react-icons";
 
