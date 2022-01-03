@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Head from "next/head";
 
 import {
@@ -16,28 +16,50 @@ import { Header } from "../Components/Header";
 
 import { api } from "../services/api";
 
-import { Episode } from "../utils/types";
+import { Episode, Result } from "../utils/types";
 
 export default function Episodes() {
   const textColor = useColorModeValue("gray.700", "gray.200");
   const spanColor = useColorModeValue("cyan.600", "cyan");
+
   const [episode, setEpisode] = useState<Episode>({} as Episode);
+  const [results, setResults] = useState<Result[]>([]);
 
   const [isLoading, setIsLoading] = useState(false);
   const [id, setId] = useState(1);
 
+  const query = `/episode/${id}`;
+
+  const fetchEpisode = useCallback(async () => {
+    const episodeData: Episode = await api
+      .get(query)
+      .then((res) => res.data)
+      .catch(() => {});
+
+    console.log("🚀 ~ episodeData", episodeData);
+    setEpisode(episodeData);
+  }, [query]);
+
+  const fetchCharacters = useCallback(async () => {
+    const resultsData = await Promise.all(
+      episode.characters.map(async (character) => {
+        return await fetch(character).then((res) => res.json());
+      }),
+    );
+
+    console.log("🚀 ~ resultsData", resultsData);
+    setResults(resultsData);
+  }, [episode?.characters]);
+
   useEffect(() => {
-    (async () => {
-      await api
-        .get(`/episode/${id}`)
-        .then((res) => {
-          setEpisode(res.data);
-        })
-        .catch(() => {
-          setEpisode({} as Episode);
-        });
-    })();
-  }, [id]);
+    fetchEpisode();
+  }, [fetchEpisode]);
+
+  useEffect(() => {
+    if (episode.characters) {
+      fetchCharacters();
+    }
+  }, [fetchCharacters, episode]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -66,6 +88,10 @@ export default function Episodes() {
         </Flex>
 
         <EpisodeSelect />
+
+        <Flex direction="column" w="full" py={8}>
+          <Cards results={results} isLoading={isLoading} />
+        </Flex>
       </Container>
     </>
   );

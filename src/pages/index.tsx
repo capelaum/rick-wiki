@@ -12,6 +12,7 @@ import { api } from "../services/api";
 import { Info, Result } from "../utils/types";
 
 import { useDebounce } from "usehooks-ts";
+import { PaginationComponent } from "../Components/Pagination";
 
 export default function Home() {
   const [results, setResults] = useState<Result[]>([]);
@@ -84,13 +85,9 @@ export default function Home() {
         />
 
         <Flex direction="column" w="full" py={8}>
-          <Cards
-            info={info}
-            results={results}
-            setPage={setPage}
-            page={page}
-            isLoading={isLoading}
-          />
+          <PaginationComponent info={info} page={page} setPage={setPage} />
+
+          <Cards results={results} isLoading={isLoading} />
         </Flex>
       </Container>
     </>

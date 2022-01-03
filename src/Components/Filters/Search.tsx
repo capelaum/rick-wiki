@@ -48,7 +48,6 @@ export function Search({ handleSearch, search }: SearchProps) {
             title="Search character"
             placeholder="Search for characters"
             size="md"
-            s
             borderColor={cyanColor}
             type="text"
             onChange={(e) => handleChange(e)}

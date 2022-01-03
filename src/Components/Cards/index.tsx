@@ -10,13 +10,10 @@ import { Loading } from "./Loading";
 
 interface CardsProps {
   results: Result[];
-  setPage: (page: number) => void;
-  page: number;
-  info: Info;
   isLoading: boolean;
 }
 
-export function Cards({ info, results, setPage, page, isLoading }: CardsProps) {
+export function Cards({ results, isLoading }: CardsProps) {
   function renderCards() {
     return (
       <SimpleGrid
@@ -47,11 +44,5 @@ export function Cards({ info, results, setPage, page, isLoading }: CardsProps) {
     return results.length ? renderCards() : renderNoResults();
   }
 
-  return (
-    <Box w="full">
-      <PaginationComponent info={info} page={page} setPage={setPage} />
-
-      {isLoading ? <Loading /> : renderResults()}
-    </Box>
-  );
+  return <Box w="full">{isLoading ? <Loading /> : renderResults()}</Box>;
 }
