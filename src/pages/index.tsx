@@ -16,15 +16,21 @@ import { useDebounce } from "usehooks-ts";
 export default function Home() {
   const [results, setResults] = useState<Result[]>([]);
   const [info, setInfo] = useState<Info>({} as Info);
-  const [search, setSearch] = useState("");
+
   const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+  const [status, setStatus] = useState("");
+  const [species, setSpecies] = useState("");
+  const [gender, setGender] = useState("");
 
   const debouncedSearch = useDebounce<string>(search, 500);
 
   useEffect(() => {
     (async () => {
       await api
-        .get(`/character/?page=${page}&name=${debouncedSearch}`)
+        .get(
+          `/character/?page=${page}&name=${debouncedSearch}&status=${status}&gender=${gender}&species=${species}`,
+        )
         .then((res) => {
           setResults(res.data.results);
           setInfo(res.data.info);
@@ -34,10 +40,24 @@ export default function Home() {
           setInfo({} as Info);
         });
     })();
-  }, [page, debouncedSearch]);
+  }, [page, debouncedSearch, status, gender, species]);
 
-  const onSearch = useCallback((value: string) => {
+  const handleSearch = useCallback((value: string) => {
     setSearch(value);
+    setPage(1);
+  }, []);
+
+  const handleFilters = useCallback((value: string, type: string) => {
+    if (type === "Status") {
+      setStatus(value);
+    }
+    if (type === "Species") {
+      setSpecies(value);
+    }
+    if (type === "Gender") {
+      setGender(value);
+    }
+    setPage(1);
   }, []);
 
   return (
@@ -48,7 +68,11 @@ export default function Home() {
       <Header />
 
       <Container maxW="1240px" centerContent px="1.25rem">
-        <Filters onSearch={onSearch} setPage={setPage} search={search} />
+        <Filters
+          handleSearch={handleSearch}
+          search={search}
+          handleFilters={handleFilters}
+        />
         <Grid
           templateColumns="repeat(4, 1fr)"
           gap={4}

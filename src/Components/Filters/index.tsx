@@ -4,12 +4,12 @@ import { CharFilters } from "./CharFilters";
 import { Search } from "./Search";
 
 interface FiltersProps {
-  onSearch: (value: string) => void;
-  setPage: (page: number) => void;
+  handleSearch: (value: string) => void;
+  handleFilters: (value: string, type: string) => void;
   search: string;
 }
 
-export function Filters({ onSearch, setPage, search }: FiltersProps) {
+export function Filters({ handleSearch, handleFilters, search }: FiltersProps) {
   return (
     <Stack
       direction={["column", "column", "column", "row"]}
@@ -17,8 +17,8 @@ export function Filters({ onSearch, setPage, search }: FiltersProps) {
       w="full"
       py={4}
     >
-      <Search onSearch={onSearch} search={search} setPage={setPage} />
-      <CharFilters />
+      <Search handleSearch={handleSearch} search={search} />
+      <CharFilters handleFilters={handleFilters} />
     </Stack>
   );
 }

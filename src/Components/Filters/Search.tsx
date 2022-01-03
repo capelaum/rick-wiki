@@ -16,21 +16,18 @@ import {
 import { SearchIcon } from "@chakra-ui/icons";
 
 interface SearchProps {
-  onSearch: (value: string) => void;
-  setPage: (page: number) => void;
+  handleSearch: (value: string) => void;
   search: string;
 }
 
-export function Search({ onSearch, search, setPage }: SearchProps) {
-  const handleSearch = async (event: FormEvent<HTMLFormElement>) => {
+export function Search({ handleSearch, search }: SearchProps) {
+  const handleSearchSSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    onSearch(event.target["character"].value);
-    setPage(1);
+    handleSearch(event.target["character"].value);
   };
 
   return (
-    <form onSubmit={(e) => handleSearch(e)}>
+    <form onSubmit={(e) => handleSearchSSubmit(e)}>
       <Flex w={["full", "full", "full", "550px"]}>
         <InputGroup>
           <Input
@@ -41,10 +38,7 @@ export function Search({ onSearch, search, setPage }: SearchProps) {
             borderColor="cyan.600"
             focusBorderColor="cyan.700"
             type="text"
-            onChange={(e) => {
-              onSearch(e.target.value);
-              setPage(1);
-            }}
+            onChange={(e) => handleSearch(e.target.value)}
             _hover={{
               outline: "none",
             }}
