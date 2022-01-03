@@ -13,9 +13,21 @@ export function HeaderButtons({ isRowDirection }: HeaderButtonsProps) {
 
   return (
     <Stack direction={isRowDirection ? "row" : "column"} w="full">
-      <HeaderButton text="Characters" isRowDirection={isRowDirection} />
-      <HeaderButton text="Episodes" isRowDirection={isRowDirection} />
-      <HeaderButton text="Locations" isRowDirection={isRowDirection} />
+      <HeaderButton
+        href="/"
+        text="Characters"
+        isRowDirection={isRowDirection}
+      />
+      <HeaderButton
+        href="/episodes"
+        text="Episodes"
+        isRowDirection={isRowDirection}
+      />
+      <HeaderButton
+        href="/locations"
+        text="Locations"
+        isRowDirection={isRowDirection}
+      />
 
       <Tooltip
         hasArrow

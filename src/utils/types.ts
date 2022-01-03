@@ -26,7 +26,12 @@ export type Result = {
   created: string;
 };
 
-export interface Data {
-  info: Info;
-  results: Result[];
-}
+export type Episode = {
+  id: number;
+  name: string;
+  air_date: string;
+  episode: string;
+  characters: string[];
+  url: string;
+  created: string;
+};

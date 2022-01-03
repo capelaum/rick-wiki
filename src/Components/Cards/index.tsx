@@ -17,31 +17,41 @@ interface CardsProps {
 }
 
 export function Cards({ info, results, setPage, page, isLoading }: CardsProps) {
+  function renderCards() {
+    return (
+      <SimpleGrid
+        minChildWidth="250px"
+        spacingX="1.25rem"
+        spacingY="2rem"
+        justifyItems="center"
+      >
+        {results.map((result) => (
+          <Card key={result.id} result={result} />
+        ))}
+      </SimpleGrid>
+    );
+  }
+
+  function renderNoResults() {
+    return (
+      <Flex justifyContent="center" w="full">
+        <Heading as="h1" size="lg">
+          No Characters found{" "}
+          <Icon as={BsEmojiDizzy} size="md" color="cyan.600" />
+        </Heading>
+      </Flex>
+    );
+  }
+
+  function renderResults() {
+    return results.length ? renderCards() : renderNoResults();
+  }
+
   return (
     <Box w="full">
       <PaginationComponent info={info} page={page} setPage={setPage} />
 
-      {isLoading ? (
-        <Loading />
-      ) : results.length > 0 ? (
-        <SimpleGrid
-          minChildWidth="250px"
-          spacingX="1.25rem"
-          spacingY="2rem"
-          justifyItems="center"
-        >
-          {results.map((result) => (
-            <Card key={result.id} result={result} />
-          ))}
-        </SimpleGrid>
-      ) : (
-        <Flex justifyContent="center" w="full">
-          <Heading as="h1" size="lg">
-            No Characters found{" "}
-            <Icon as={BsEmojiDizzy} size="md" color="cyan.600" />
-          </Heading>
-        </Flex>
-      )}
+      {isLoading ? <Loading /> : renderResults()}
     </Box>
   );
 }

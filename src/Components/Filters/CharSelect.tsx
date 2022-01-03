@@ -68,7 +68,7 @@ export function CharSelect({ type, handleFilters }: CharSelectProps) {
       </VisuallyHidden>
       <Select
         id={type}
-        aria-label={type}
+        aria-label={`Select ${type}`}
         name={type}
         title={type}
         placeholder={type}
