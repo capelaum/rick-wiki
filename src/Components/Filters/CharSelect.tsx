@@ -78,6 +78,7 @@ export function CharSelect({ type, handleFilters }: CharSelectProps) {
         size="md"
         variant="outline"
         // icon={<MdArrowDropDown />}
+        color={cyanColor}
         iconColor={cyanColor}
         borderColor={cyanColor}
         colorScheme="cyan"

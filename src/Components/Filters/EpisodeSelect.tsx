@@ -5,9 +5,16 @@ import {
   FormControl,
   FormLabel,
   VisuallyHidden,
+  useColorModeValue,
 } from "@chakra-ui/react";
 
-export function EpisodeSelect() {
+interface EpisodeSelectProps {
+  handleSelectEpisode: (id: number) => void;
+}
+
+export function EpisodeSelect({ handleSelectEpisode }: EpisodeSelectProps) {
+  const cyanColor = useColorModeValue("cyan.600", "cyan");
+
   return (
     <FormControl maxW="400px">
       <VisuallyHidden>
@@ -22,11 +29,14 @@ export function EpisodeSelect() {
         size="md"
         variant="outline"
         // icon={<MdArrowDropDown />}
-        iconColor="cyan.600"
-        borderColor="cyan.600"
+        iconColor={cyanColor}
+        borderColor={cyanColor}
         colorScheme="cyan"
         _hover={{
           cursor: "pointer",
+          outline: "none",
+        }}
+        _focus={{
           outline: "none",
         }}
         // onChange={(e) => handleChange(e)}

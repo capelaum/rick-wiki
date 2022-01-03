@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 
 import {
@@ -10,35 +11,38 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
-import { Cards } from "../Components/Cards";
-import { EpisodeSelect } from "../Components/Filters/EpisodeSelect";
-import { Header } from "../Components/Header";
-
 import { api } from "../services/api";
 
-import { Episode, Result } from "../utils/types";
+import { Episode, Info, Result } from "../utils/types";
 
-export default function Episodes() {
-  const textColor = useColorModeValue("gray.700", "gray.200");
-  const spanColor = useColorModeValue("cyan.600", "cyan");
+import { Cards } from "../Components/Cards";
+import { Header } from "../Components/Header";
+import { EpisodesHeader } from "../Components/Episodes/EpisodesHeader";
+import { EpisodeSelect } from "../Components/Filters/EpisodeSelect";
 
+interface EpisodesProps {
+  episodes: Episode[];
+  info: Info;
+}
+
+export default function Episodes({ episodes, info }: EpisodesProps) {
+  console.log("🚀 ~ info", info);
+  console.log("🚀 ~ episodes", episodes);
+  console.log("🚀 ~ episodes.length", episodes.length);
   const [episode, setEpisode] = useState<Episode>({} as Episode);
   const [results, setResults] = useState<Result[]>([]);
 
   const [isLoading, setIsLoading] = useState(false);
   const [id, setId] = useState(1);
 
-  const query = `/episode/${id}`;
-
   const fetchEpisode = useCallback(async () => {
-    const episodeData: Episode = await api
-      .get(query)
-      .then((res) => res.data)
+    const episodeData: Episode = await fetch(`/api/episodes/${id}`)
+      .then((res) => res.json())
       .catch(() => {});
 
     console.log("🚀 ~ episodeData", episodeData);
     setEpisode(episodeData);
-  }, [query]);
+  }, [id]);
 
   const fetchCharacters = useCallback(async () => {
     const resultsData = await Promise.all(
@@ -69,25 +73,21 @@ export default function Episodes() {
     }, 1000);
   }, [episode]);
 
+  const handleSelectEpisode = useCallback((id: number) => {
+    setId(id);
+  }, []);
+
   return (
     <>
       <Head>
-        <title>Rick & Morty Wiki | Home</title>
+        <title>Rick & Morty Wiki | Episodes</title>
       </Head>
       <Header />
 
       <Container maxW="1240px" centerContent px="1.25rem">
-        <Flex direction="column" w="full" py={8} alignItems="center">
-          <Heading as="h1" size="xl" color={textColor} pb={4}>
-            Episode: <chakra.span color={spanColor}>{episode.name}</chakra.span>
-          </Heading>
-          <Heading as="h2" fontSize={["md", "lg"]} color={textColor}>
-            Air Date:{" "}
-            <chakra.span color={spanColor}>{episode.air_date}</chakra.span>
-          </Heading>
-        </Flex>
+        <EpisodesHeader episode={episode} />
 
-        <EpisodeSelect />
+        <EpisodeSelect handleSelectEpisode={handleSelectEpisode} />
 
         <Flex direction="column" w="full" py={8}>
           <Cards results={results} isLoading={isLoading} />
@@ -96,3 +96,26 @@ export default function Episodes() {
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { data } = await api.get("/episode");
+  const { info } = data;
+
+  const allEpisodesIds = [...Array(info.count).keys()].map((i) => i + 1);
+
+  const { data: episodes } = await api.get(`/episode/${allEpisodesIds}`);
+
+  if (!data) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { episodes, info },
+    revalidate: 15 * 60,
+  };
+};

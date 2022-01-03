@@ -73,7 +73,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Rick & Morty Wiki | Home</title>
+        <title>Rick & Morty Wiki | Characters</title>
       </Head>
       <Header />
 
