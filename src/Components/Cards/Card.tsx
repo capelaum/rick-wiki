@@ -12,11 +12,17 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
-import { MdLocationOn, MdOutlineTripOrigin, MdPerson } from "react-icons/md";
+import {
+  MdLocationOn,
+  MdOutlineTripOrigin,
+  MdPerson,
+  MdCoronavirus,
+  MdHome,
+} from "react-icons/md";
 import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { RiAliensFill, RiQuestionFill } from "react-icons/ri";
-import { FaRobot, FaGenderless } from "react-icons/fa";
-import { GiGreekTemple } from "react-icons/gi";
+import { FaRobot, FaGenderless, FaRedditAlien } from "react-icons/fa";
+import { GiGreekTemple, GiAlienStare, GiAlienSkull } from "react-icons/gi";
 
 import { CardInfo } from "./CardInfo";
 
@@ -38,7 +44,7 @@ export function Card({ result }: CardProps) {
       case "Female":
         return BsGenderFemale;
       case "Genderless":
-        return FaGenderless;
+        return MdOutlineTripOrigin;
       case "Unknown":
         return RiQuestionFill;
       default:
@@ -52,12 +58,18 @@ export function Card({ result }: CardProps) {
         return RiAliensFill;
       case "Human":
         return MdPerson;
+      case "Humanoid":
+        return FaRedditAlien;
       case "Robot":
         return FaRobot;
+      case "Mythological Creature":
+        return GiGreekTemple;
+      case "Cronenberg":
+        return GiAlienSkull;
+      case "Disease":
+        return MdCoronavirus;
       case "Unknown":
         return RiQuestionFill;
-      case "Mythological":
-        return GiGreekTemple;
       default:
         return RiQuestionFill;
     }
@@ -87,7 +99,13 @@ export function Card({ result }: CardProps) {
         alignItems="center"
         px={4}
         py={3}
-        bg="cyan.600"
+        bg={
+          status === "Dead"
+            ? "red.500"
+            : status === "Alive"
+            ? "green.500"
+            : "purple.500"
+        }
       >
         <Heading as="h2" color="white" fontWeight="bold" fontSize="lg">
           {name}
@@ -111,11 +129,7 @@ export function Card({ result }: CardProps) {
       <Flex py={4} px={4} justifyContent="center" flexDirection="column">
         <CardInfo text={gender} icon={setGenderIcon()} title="Gender" />
         <CardInfo text={location.name} icon={MdLocationOn} title="Location" />
-        <CardInfo
-          text={origin.name}
-          icon={MdOutlineTripOrigin}
-          title="Origin"
-        />
+        <CardInfo text={origin.name} icon={MdHome} title="Origin" />
         <CardInfo text={species} icon={setEspeciesIcon()} title="Species" />
       </Flex>
     </GridItem>

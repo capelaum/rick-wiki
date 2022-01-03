@@ -23,7 +23,7 @@ export function CardInfo({ icon, text, title }: CardInfoProps) {
         marginBottom: "1rem",
       }}
     >
-      <Icon as={icon} h={4} w={4} title={title} color="cyan.600" />
+      <Icon as={icon} h={5} w={5} title={title} color="cyan.600" />
 
       <Heading
         as="h2"
