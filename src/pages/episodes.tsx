@@ -2,14 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { GetStaticProps } from "next";
 import Head from "next/head";
 
-import {
-  chakra,
-  Container,
-  Flex,
-  Heading,
-  Text,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Container, Flex } from "@chakra-ui/react";
 
 import { api } from "../services/api";
 
@@ -18,7 +11,7 @@ import { Episode, Info, Result } from "../utils/types";
 import { Cards } from "../Components/Cards";
 import { Header } from "../Components/Header";
 import { EpisodesHeader } from "../Components/Episodes/EpisodesHeader";
-import { EpisodeSelect } from "../Components/Filters/EpisodeSelect";
+import { EpisodeSelect } from "../Components/Episodes/EpisodeSelect";
 
 interface EpisodesProps {
   episodes: Episode[];
@@ -26,44 +19,44 @@ interface EpisodesProps {
 }
 
 export default function Episodes({ episodes, info }: EpisodesProps) {
-  console.log("🚀 ~ info", info);
-  console.log("🚀 ~ episodes", episodes);
-  console.log("🚀 ~ episodes.length", episodes.length);
-  const [episode, setEpisode] = useState<Episode>({} as Episode);
-  const [results, setResults] = useState<Result[]>([]);
+  const [allEpisodes, setAllepisodes] = useState<Episode[]>(episodes);
+  const [episode, setEpisode] = useState<Episode>(episodes[0]);
+  const [characters, setCharacters] = useState<Result[]>([]);
 
   const [isLoading, setIsLoading] = useState(false);
   const [id, setId] = useState(1);
 
-  const fetchEpisode = useCallback(async () => {
-    const episodeData: Episode = await fetch(`/api/episodes/${id}`)
-      .then((res) => res.json())
-      .catch(() => {});
-
-    console.log("🚀 ~ episodeData", episodeData);
-    setEpisode(episodeData);
-  }, [id]);
+  const getEpisode = useCallback(
+    (id: number): Episode => {
+      return allEpisodes.find((episode) => episode.id === id);
+    },
+    [allEpisodes],
+  );
 
   const fetchCharacters = useCallback(async () => {
-    const resultsData = await Promise.all(
-      episode.characters.map(async (character) => {
-        return await fetch(character).then((res) => res.json());
-      }),
-    );
+    try {
+      const results = await Promise.all(
+        episode.characters.map(async (character) => {
+          return await fetch(character).then((res) => res.json());
+        }),
+      );
 
-    console.log("🚀 ~ resultsData", resultsData);
-    setResults(resultsData);
+      console.log("🚀 ~ results", results);
+      setCharacters(results);
+    } catch (err) {
+      console.error(err.message);
+    }
   }, [episode?.characters]);
-
-  useEffect(() => {
-    fetchEpisode();
-  }, [fetchEpisode]);
 
   useEffect(() => {
     if (episode.characters) {
       fetchCharacters();
     }
   }, [fetchCharacters, episode]);
+
+  useEffect(() => {
+    setEpisode(getEpisode(id));
+  }, [id, getEpisode]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -87,10 +80,13 @@ export default function Episodes({ episodes, info }: EpisodesProps) {
       <Container maxW="1240px" centerContent px="1.25rem">
         <EpisodesHeader episode={episode} />
 
-        <EpisodeSelect handleSelectEpisode={handleSelectEpisode} />
+        <EpisodeSelect
+          handleSelectEpisode={handleSelectEpisode}
+          allEpisodes={allEpisodes}
+        />
 
         <Flex direction="column" w="full" py={8}>
-          <Cards results={results} isLoading={isLoading} />
+          <Cards results={characters} isLoading={isLoading} />
         </Flex>
       </Container>
     </>

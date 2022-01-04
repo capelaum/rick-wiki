@@ -12,10 +12,21 @@ export function EpisodesHeader({ episode }: HeaderProps) {
 
   return (
     <Flex direction="column" w="full" py={8} alignItems="center">
-      <Heading as="h1" size="xl" color={textColor} pb={4}>
+      <Heading
+        as="h1"
+        fontSize={["md", "2xl", "3xl"]}
+        color={textColor}
+        pb={4}
+        textAlign="center"
+      >
         Episode: <chakra.span color={spanColor}>{episode.name}</chakra.span>
       </Heading>
-      <Heading as="h2" fontSize={["md", "lg"]} color={textColor}>
+      <Heading
+        as="h2"
+        fontSize={["md", "lg"]}
+        color={textColor}
+        textAlign="center"
+      >
         Air Date:{" "}
         <chakra.span color={spanColor}>{episode.air_date}</chakra.span>
       </Heading>

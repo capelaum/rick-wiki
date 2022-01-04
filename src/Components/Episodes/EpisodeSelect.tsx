@@ -8,12 +8,24 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
+import { Episode } from "../../utils/types";
+
 interface EpisodeSelectProps {
   handleSelectEpisode: (id: number) => void;
+  allEpisodes: Episode[];
 }
 
-export function EpisodeSelect({ handleSelectEpisode }: EpisodeSelectProps) {
+export function EpisodeSelect({
+  handleSelectEpisode,
+  allEpisodes,
+}: EpisodeSelectProps) {
   const cyanColor = useColorModeValue("cyan.600", "cyan");
+
+  function handleChange(e: ChangeEvent<HTMLSelectElement>) {
+    console.log(e.target.value);
+
+    handleSelectEpisode(+e.target.value);
+  }
 
   return (
     <FormControl maxW="400px">
@@ -22,13 +34,14 @@ export function EpisodeSelect({ handleSelectEpisode }: EpisodeSelectProps) {
       </VisuallyHidden>
       <Select
         id="episodes"
-        aria-label="Select episode"
         name="episodes"
-        title="episodes"
-        placeholder="Episode id: Name"
+        aria-label="Select episode"
+        title="Select episode"
+        // placeholder="Select episode"
         size="md"
         variant="outline"
         // icon={<MdArrowDropDown />}
+        color={cyanColor}
         iconColor={cyanColor}
         borderColor={cyanColor}
         colorScheme="cyan"
@@ -39,9 +52,13 @@ export function EpisodeSelect({ handleSelectEpisode }: EpisodeSelectProps) {
         _focus={{
           outline: "none",
         }}
-        // onChange={(e) => handleChange(e)}
+        onChange={(e) => handleChange(e)}
       >
-        <option value="value">Value</option>
+        {allEpisodes.map((episode) => (
+          <option key={episode.id} value={episode.id}>
+            Episode {episode.id} - {episode.episode}
+          </option>
+        ))}
       </Select>
     </FormControl>
   );
