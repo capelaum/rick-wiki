@@ -37,7 +37,7 @@ export function HeaderButtons({ isRowDirection }: HeaderButtonsProps) {
         <IconButton
           colorScheme="cyan"
           variant={isRowDirection ? "ghost" : "outline"}
-          size={isRowDirection ? "md" : "sm"}
+          size="md"
           onClick={toggleColorMode}
           aria-label="Light / Dark mode"
           _focus={{

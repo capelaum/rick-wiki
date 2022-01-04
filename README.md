@@ -1,6 +1,13 @@
-# Rick & Morty Wiki
+<div align="center">
+  <h1>Rick & Morty Wiki</h1>
+  <hr/>
+  <p>Simple project that fetchs and shows data from the
+  <a href="https://rickandmortyapi.com">Rick and Morty Community API</a>
+  open source and under the BSD License. The interface was made using React.js, Next.js and ChakraUI component library.</p>
+  <img src=".github/cover.png" width="700px">
+</div>
 
-Simple project that fetchs and shows data from the [Rick and Morty Community API][rick_morty_api], open source and under the BSD License. The interface was made using React.js, Next.js and ChakraUI component library.
+## Demo: [Rick & Morty Wiki][rick_morty_wiki]
 
 ## :white_check_mark: Features
 
@@ -45,3 +52,4 @@ This project is under the MIT License - [LICENSE](LICENSE)
 [choc_ui_paginator]: https://choc-ui.tech/docs/packages/pagination
 [axios]: https://axios-http.com/docs/intro
 [rick_morty_api]: https://rickandmortyapi.com
+[rick_morty_wiki]: https://rick-wiki.vercel.app

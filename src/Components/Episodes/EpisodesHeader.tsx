@@ -14,7 +14,7 @@ export function EpisodesHeader({ episode }: EpisodesHeaderProps) {
     <Flex direction="column" w="full" py={8} alignItems="center">
       <Heading
         as="h1"
-        fontSize={["md", "2xl", "3xl"]}
+        fontSize={["xl", "2xl", "3xl"]}
         color={textColor}
         pb={4}
         textAlign="center"

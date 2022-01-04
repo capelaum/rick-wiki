@@ -47,7 +47,7 @@ export function Header() {
           <IconButton
             display={isOpen ? "none" : "flex"}
             aria-label="Open menu"
-            fontSize="24px"
+            fontSize="28px"
             color={cyanColor}
             variant="ghost"
             icon={<AiOutlineMenu />}

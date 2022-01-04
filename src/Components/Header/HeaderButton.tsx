@@ -33,7 +33,7 @@ export function HeaderButton({
         color={cyanColor}
         borderColor={cyanColor}
         variant={isRowDirection ? "ghost" : "outline"}
-        size={isRowDirection ? "md" : "sm"}
+        size="md"
         isActive={path === text ? true : false}
         _focus={{
           outline: "none",

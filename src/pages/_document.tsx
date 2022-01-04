@@ -8,6 +8,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="pt-br">
         <Head>
+          <meta charSet="UTF-8" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
@@ -39,6 +40,20 @@ export default class MyDocument extends Document {
           />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
+
+          <meta name="description" content="Rick & Morty Wiki" />
+          <meta property="og:title" content="Rick & Morty Wiki" />
+          <meta property="og:site_name" content="Rick & Morty Wiki"></meta>
+          <meta property="og:type" content="website" />
+          <meta property="og:description" content="Rick & Morty Wiki" />
+          <meta property="og:url" content="https://rick-wiki.vercel.app" />
+
+          <meta
+            property="og:image"
+            itemProp="image"
+            content="https://rick-wiki.vercel.app/Rick_and_Morty_logo.png"
+          />
+          <meta property="og:image:type" content="image/png"></meta>
         </Head>
         <body>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
