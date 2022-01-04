@@ -17,6 +17,7 @@ export function HeaderButton({
 }: HeaderButtonProps) {
   const cyanColor = useColorModeValue("cyan.600", "cyan");
   const grayColor = useColorModeValue("white", "gray.700");
+
   const [path, setPath] = useState("Characters");
   const router = useRouter();
 

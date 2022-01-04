@@ -1,6 +1,6 @@
-import { IconButton, Stack, Tooltip, useColorMode } from "@chakra-ui/react";
+import { Stack, useColorMode } from "@chakra-ui/react";
 
-import { FaMoon, FaSun } from "react-icons/fa";
+import { ColorModeButton } from "../ColorModeButton";
 
 import { HeaderButton } from "./HeaderButton";
 
@@ -12,7 +12,11 @@ export function HeaderButtons({ isRowDirection }: HeaderButtonsProps) {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Stack direction={isRowDirection ? "row" : "column"} w="full">
+    <Stack
+      direction={isRowDirection ? "row" : "column"}
+      w="full"
+      pt={[0, 4, 0]}
+    >
       <HeaderButton
         href="/"
         text="Characters"
@@ -29,23 +33,7 @@ export function HeaderButtons({ isRowDirection }: HeaderButtonsProps) {
         isRowDirection={isRowDirection}
       />
 
-      <Tooltip
-        hasArrow
-        label={colorMode === "light" ? "Dark" : "Light"}
-        placement="bottom"
-      >
-        <IconButton
-          colorScheme="cyan"
-          variant={isRowDirection ? "ghost" : "outline"}
-          size="md"
-          onClick={toggleColorMode}
-          aria-label="Light / Dark mode"
-          _focus={{
-            outline: "none",
-          }}
-          icon={colorMode === "light" ? <FaMoon /> : <FaSun />}
-        />
-      </Tooltip>
+      <ColorModeButton isRowDirection={isRowDirection} />
     </Stack>
   );
 }

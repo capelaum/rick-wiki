@@ -20,6 +20,9 @@ interface CardInfoProps {
 }
 
 export function CardInfo({ text, title }: CardInfoProps) {
+  const cyanColor = useColorModeValue("cyan.600", "cyan");
+  const grayColor = useColorModeValue("gray.700", "gray.200");
+
   function setIcon(): IconType {
     if (title === "Location") {
       return MdLocationPin;
@@ -68,14 +71,9 @@ export function CardInfo({ text, title }: CardInfoProps) {
         marginBottom: "1rem",
       }}
     >
-      <Icon as={setIcon()} h={5} w={5} title={title} color="cyan.600" />
+      <Icon as={setIcon()} h={5} w={5} title={title} color={cyanColor} />
 
-      <Heading
-        as="h2"
-        px={2}
-        fontSize="md"
-        color={useColorModeValue("gray.700", "gray.200")}
-      >
+      <Heading as="h2" px={2} fontSize="md" color={grayColor}>
         {text}
       </Heading>
     </Flex>

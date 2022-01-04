@@ -13,6 +13,7 @@ import { Info, Character } from "../utils/types";
 
 import { useDebounce } from "usehooks-ts";
 import { PaginationComponent } from "../Components/Pagination";
+import { Footer } from "../Components/Footer";
 
 export default function Home() {
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -26,14 +27,6 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
 
   const debouncedSearch = useDebounce<string>(search, 500);
-
-  useEffect(() => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-  }, [characters]);
 
   useEffect(() => {
     (async () => {
@@ -51,6 +44,14 @@ export default function Home() {
         });
     })();
   }, [page, debouncedSearch, status, gender, species]);
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  }, [characters]);
 
   const handleSearch = useCallback((value: string) => {
     setSearch(value);
@@ -90,6 +91,8 @@ export default function Home() {
           <Cards characters={characters} isLoading={isLoading} />
         </Flex>
       </Container>
+
+      <Footer isRowDirection />
     </>
   );
 }

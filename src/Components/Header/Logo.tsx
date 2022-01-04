@@ -15,7 +15,6 @@ export function Logo() {
         display="flex"
         size="lg"
         cursor="pointer"
-        pb={[0, 4, 0]}
         alignItems="center"
       >
         <Image
