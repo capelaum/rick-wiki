@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
-import { GetStaticProps } from "next";
+
 import Head from "next/head";
+import { GetStaticProps } from "next";
 
 import { Container, Flex } from "@chakra-ui/react";
 
@@ -48,14 +49,14 @@ export default function Episodes({ episodes, info }: EpisodesProps) {
   }, [episode?.characters]);
 
   useEffect(() => {
+    setEpisode(getEpisode(id));
+  }, [id, getEpisode]);
+
+  useEffect(() => {
     if (episode.characters) {
       fetchCharacters();
     }
   }, [fetchCharacters, episode]);
-
-  useEffect(() => {
-    setEpisode(getEpisode(id));
-  }, [id, getEpisode]);
 
   useEffect(() => {
     setIsLoading(true);

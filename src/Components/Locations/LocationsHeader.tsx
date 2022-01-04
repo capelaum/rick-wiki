@@ -1,8 +1,12 @@
 import { chakra, Flex, Heading, useColorModeValue } from "@chakra-ui/react";
 
-interface LocationsHeaderProps {}
+import { Location } from "../../utils/types";
 
-export function LocationsHeader() {
+interface LocationsHeaderProps {
+  location: Location;
+}
+
+export function LocationsHeader({ location }: LocationsHeaderProps) {
   const textColor = useColorModeValue("gray.700", "gray.200");
   const spanColor = useColorModeValue("cyan.600", "cyan");
 
@@ -15,7 +19,7 @@ export function LocationsHeader() {
         pb={4}
         textAlign="center"
       >
-        Location: <chakra.span color={spanColor}>Location Name</chakra.span>
+        Location: <chakra.span color={spanColor}>{location.name}</chakra.span>
       </Heading>
       <Heading
         as="h2"
@@ -24,7 +28,8 @@ export function LocationsHeader() {
         textAlign="center"
         pb={4}
       >
-        Dimension: <chakra.span color={spanColor}>Dimension Name</chakra.span>
+        Dimension:{" "}
+        <chakra.span color={spanColor}>{location.dimension}</chakra.span>
       </Heading>
       <Heading
         as="h3"
@@ -32,7 +37,7 @@ export function LocationsHeader() {
         color={textColor}
         textAlign="center"
       >
-        Type: <chakra.span color={spanColor}>Type</chakra.span>
+        Type: <chakra.span color={spanColor}>{location.type}</chakra.span>
       </Heading>
     </Flex>
   );

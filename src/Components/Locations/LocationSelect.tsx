@@ -8,13 +8,23 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
-export function LocationSelect() {
+import { Location } from "../../utils/types";
+
+interface EpisodeSelectProps {
+  handleSelectLocation: (id: number) => void;
+  allLocations: Location[];
+}
+
+export function LocationSelect({
+  handleSelectLocation,
+  allLocations,
+}: EpisodeSelectProps) {
   const cyanColor = useColorModeValue("cyan.600", "cyan");
 
   function handleChange(e: ChangeEvent<HTMLSelectElement>) {
     console.log(e.target.value);
 
-    // handleSelectEpisode(+e.target.value);
+    handleSelectLocation(+e.target.value);
   }
 
   return (
@@ -42,13 +52,13 @@ export function LocationSelect() {
         _focus={{
           outline: "none",
         }}
-        // onChange={(e) => handleChange(e)}
+        onChange={(e) => handleChange(e)}
       >
-        {/* {allEpisodes.map((episode) => (
-          <option key={episode.id} value={episode.id}>
-            Episode {episode.id} - {episode.episode}
+        {allLocations.map((location) => (
+          <option key={location.id} value={location.id}>
+            Location {location.id} - {location.name}
           </option>
-        ))} */}
+        ))}
       </Select>
     </FormControl>
   );
