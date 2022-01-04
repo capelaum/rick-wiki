@@ -19,7 +19,7 @@ interface EpisodesProps {
 }
 
 export default function Episodes({ episodes, info }: EpisodesProps) {
-  const [allEpisodes, setAllepisodes] = useState<Episode[]>(episodes);
+  const [allEpisodes, _] = useState<Episode[]>(episodes);
   const [episode, setEpisode] = useState<Episode>(episodes[0]);
   const [characters, setCharacters] = useState<Result[]>([]);
 
@@ -41,7 +41,6 @@ export default function Episodes({ episodes, info }: EpisodesProps) {
         }),
       );
 
-      console.log("🚀 ~ results", results);
       setCharacters(results);
     } catch (err) {
       console.error(err.message);
