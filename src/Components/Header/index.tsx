@@ -53,8 +53,8 @@ export function Header() {
             icon={<AiOutlineMenu />}
             onClick={onOpen}
             pos="absolute"
-            top={3.5}
-            right={3.5}
+            top={6}
+            right={4}
           />
 
           <CloseButton
@@ -63,8 +63,8 @@ export function Header() {
             onClick={onClose}
             display={isOpen ? "flex" : "none"}
             pos="absolute"
-            top={3.5}
-            right={3.5}
+            top={6}
+            right={4}
             size="lg"
           />
 
