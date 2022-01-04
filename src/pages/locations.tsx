@@ -6,7 +6,10 @@ import {
   Container,
 } from "@chakra-ui/react";
 import Head from "next/head";
+
 import { Header } from "../Components/Header";
+import { LocationsHeader } from "../Components/Locations/LocationsHeader";
+import { LocationSelect } from "../Components/Locations/LocationSelect";
 
 export default function Locations() {
   const textColor = useColorModeValue("gray.700", "gray.200");
@@ -20,35 +23,9 @@ export default function Locations() {
       <Header />
 
       <Container maxW="1240px" centerContent px="1.25rem">
-        <Flex direction="column" w="full" py={8} alignItems="center">
-          <Heading
-            as="h1"
-            fontSize={["md", "2xl", "3xl"]}
-            color={textColor}
-            pb={4}
-            textAlign="center"
-          >
-            Location: <chakra.span color={spanColor}>Location Name</chakra.span>
-          </Heading>
-          <Heading
-            as="h2"
-            fontSize={["md", "lg"]}
-            color={textColor}
-            textAlign="center"
-            pb={4}
-          >
-            Dimension:{" "}
-            <chakra.span color={spanColor}>Dimension Name</chakra.span>
-          </Heading>
-          <Heading
-            as="h3"
-            fontSize={["sm", "md"]}
-            color={textColor}
-            textAlign="center"
-          >
-            Type: <chakra.span color={spanColor}>Type</chakra.span>
-          </Heading>
-        </Flex>
+        <LocationsHeader />
+
+        <LocationSelect />
       </Container>
     </>
   );

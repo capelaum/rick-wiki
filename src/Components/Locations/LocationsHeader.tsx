@@ -1,12 +1,8 @@
 import { chakra, Flex, Heading, useColorModeValue } from "@chakra-ui/react";
 
-import { Episode } from "../../utils/types";
+interface LocationsHeaderProps {}
 
-interface EpisodesHeaderProps {
-  episode: Episode;
-}
-
-export function EpisodesHeader({ episode }: EpisodesHeaderProps) {
+export function LocationsHeader() {
   const textColor = useColorModeValue("gray.700", "gray.200");
   const spanColor = useColorModeValue("cyan.600", "cyan");
 
@@ -19,16 +15,24 @@ export function EpisodesHeader({ episode }: EpisodesHeaderProps) {
         pb={4}
         textAlign="center"
       >
-        Episode: <chakra.span color={spanColor}>{episode.name}</chakra.span>
+        Location: <chakra.span color={spanColor}>Location Name</chakra.span>
       </Heading>
       <Heading
         as="h2"
         fontSize={["md", "lg"]}
         color={textColor}
         textAlign="center"
+        pb={4}
       >
-        Air Date:{" "}
-        <chakra.span color={spanColor}>{episode.air_date}</chakra.span>
+        Dimension: <chakra.span color={spanColor}>Dimension Name</chakra.span>
+      </Heading>
+      <Heading
+        as="h3"
+        fontSize={["sm", "md"]}
+        color={textColor}
+        textAlign="center"
+      >
+        Type: <chakra.span color={spanColor}>Type</chakra.span>
       </Heading>
     </Flex>
   );
