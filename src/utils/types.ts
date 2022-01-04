@@ -5,7 +5,7 @@ export type Info = {
   prev: string;
 };
 
-export type Result = {
+export type Character = {
   id: number;
   name: string;
   status: string;

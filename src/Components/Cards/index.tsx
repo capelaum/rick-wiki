@@ -1,17 +1,17 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
 
-import { Result } from "../../utils/types";
+import { Character } from "../../utils/types";
 
 import { Card } from "./Card";
 import { Loading } from "./Loading";
 import { NoResults } from "./NoResults";
 
 interface CardsProps {
-  results: Result[];
+  characters: Character[];
   isLoading: boolean;
 }
 
-export function Cards({ results, isLoading }: CardsProps) {
+export function Cards({ characters, isLoading }: CardsProps) {
   function renderCards() {
     return (
       <SimpleGrid
@@ -20,16 +20,16 @@ export function Cards({ results, isLoading }: CardsProps) {
         spacingY="2rem"
         justifyItems="center"
       >
-        {results.map((result) => (
+        {characters.map((result) => (
           <Card key={result.id} result={result} />
         ))}
       </SimpleGrid>
     );
   }
 
-  function renderResults() {
-    return results.length ? renderCards() : <NoResults />;
+  function renderCharacters() {
+    return characters.length ? renderCards() : <NoResults />;
   }
 
-  return <Box w="full">{isLoading ? <Loading /> : renderResults()}</Box>;
+  return <Box w="full">{isLoading ? <Loading /> : renderCharacters()}</Box>;
 }

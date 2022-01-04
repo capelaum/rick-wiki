@@ -9,13 +9,13 @@ import { Cards } from "../Components/Cards";
 
 import { api } from "../services/api";
 
-import { Info, Result } from "../utils/types";
+import { Info, Character } from "../utils/types";
 
 import { useDebounce } from "usehooks-ts";
 import { PaginationComponent } from "../Components/Pagination";
 
 export default function Home() {
-  const [results, setResults] = useState<Result[]>([]);
+  const [characters, setCharacters] = useState<Character[]>([]);
   const [info, setInfo] = useState<Info>({} as Info);
 
   const [page, setPage] = useState(1);
@@ -32,8 +32,8 @@ export default function Home() {
 
     setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
-  }, [results]);
+    }, 500);
+  }, [characters]);
 
   useEffect(() => {
     (async () => {
@@ -42,11 +42,11 @@ export default function Home() {
           `/character/?page=${page}&name=${debouncedSearch}&status=${status}&gender=${gender}&species=${species}`,
         )
         .then((res) => {
-          setResults(res.data.results);
+          setCharacters(res.data.results);
           setInfo(res.data.info);
         })
         .catch(() => {
-          setResults([]);
+          setCharacters([]);
           setInfo({} as Info);
         });
     })();
@@ -87,7 +87,7 @@ export default function Home() {
         <Flex direction="column" w="full" py={8}>
           <PaginationComponent info={info} page={page} setPage={setPage} />
 
-          <Cards results={results} isLoading={isLoading} />
+          <Cards characters={characters} isLoading={isLoading} />
         </Flex>
       </Container>
     </>

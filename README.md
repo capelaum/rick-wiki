@@ -1,13 +1,12 @@
 <div align="center">
   <h1>Rick & Morty Wiki</h1>
-  <hr/>
   <p>Simple project that fetchs and shows data from the
   <a href="https://rickandmortyapi.com">Rick and Morty Community API</a>
   open source and under the BSD License. The interface was made using React.js, Next.js and ChakraUI component library.</p>
   <img src=".github/cover.png" width="700px">
 </div>
 
-## Demo: [Rick & Morty Wiki][rick_morty_wiki]
+### Demo: [Rick & Morty Wiki][rick_morty_wiki]
 
 ## :white_check_mark: Features
 

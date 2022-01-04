@@ -7,7 +7,7 @@ import { Container, Flex } from "@chakra-ui/react";
 
 import { api } from "../services/api";
 
-import { Episode, Info, Result } from "../utils/types";
+import { Episode, Info, Character } from "../utils/types";
 
 import { Cards } from "../Components/Cards";
 import { Header } from "../Components/Header";
@@ -22,7 +22,7 @@ interface EpisodesProps {
 export default function Episodes({ episodes, info }: EpisodesProps) {
   const [allEpisodes, _] = useState<Episode[]>(episodes);
   const [episode, setEpisode] = useState<Episode>(episodes[0]);
-  const [characters, setCharacters] = useState<Result[]>([]);
+  const [characters, setCharacters] = useState<Character[]>([]);
 
   const [isLoading, setIsLoading] = useState(false);
   const [id, setId] = useState(1);
@@ -63,7 +63,7 @@ export default function Episodes({ episodes, info }: EpisodesProps) {
 
     setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
+    }, 500);
   }, [episode]);
 
   const handleSelectEpisode = useCallback((id: number) => {
@@ -86,7 +86,7 @@ export default function Episodes({ episodes, info }: EpisodesProps) {
         />
 
         <Flex direction="column" w="full" py={8}>
-          <Cards results={characters} isLoading={isLoading} />
+          <Cards characters={characters} isLoading={isLoading} />
         </Flex>
       </Container>
     </>

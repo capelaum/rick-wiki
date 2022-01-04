@@ -7,7 +7,7 @@ import { Container, Flex } from "@chakra-ui/react";
 
 import { api } from "../services/api";
 
-import { Info, Result, Location } from "../utils/types";
+import { Info, Character, Location } from "../utils/types";
 
 import { Header } from "../Components/Header";
 import { LocationsHeader } from "../Components/Locations/LocationsHeader";
@@ -22,7 +22,7 @@ interface LocationsProps {
 export default function Locations({ locations, info }: LocationsProps) {
   const [allLocations, _] = useState<Location[]>(locations);
   const [location, setLocation] = useState<Location>(locations[0]);
-  const [residents, setResidents] = useState<Result[]>([]);
+  const [residents, setResidents] = useState<Character[]>([]);
 
   const [isLoading, setIsLoading] = useState(false);
   const [id, setId] = useState(1);
@@ -63,7 +63,7 @@ export default function Locations({ locations, info }: LocationsProps) {
 
     setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
+    }, 500);
   }, [location]);
 
   const handleSelectLocation = useCallback((id: number) => {
@@ -86,7 +86,7 @@ export default function Locations({ locations, info }: LocationsProps) {
         />
 
         <Flex direction="column" w="full" py={8}>
-          <Cards results={residents} isLoading={isLoading} />
+          <Cards characters={residents} isLoading={isLoading} />
         </Flex>
       </Container>
     </>
