@@ -8,10 +8,9 @@ import { NoResults } from "./NoResults";
 
 interface CardsProps {
   characters: Character[];
-  isLoading: boolean;
 }
 
-export function Cards({ characters, isLoading }: CardsProps) {
+export function Cards({ characters }: CardsProps) {
   function renderCards() {
     return (
       <SimpleGrid
@@ -31,5 +30,5 @@ export function Cards({ characters, isLoading }: CardsProps) {
     return characters.length ? renderCards() : <NoResults />;
   }
 
-  return <Box w="full">{isLoading ? <Loading /> : renderCharacters()}</Box>;
+  return <Box w="full">{renderCharacters()}</Box>;
 }

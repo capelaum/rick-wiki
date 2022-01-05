@@ -23,8 +23,6 @@ export default function Episodes({ episodes }: EpisodesProps) {
   const [allEpisodes, _] = useState<Episode[]>(episodes);
   const [episode, setEpisode] = useState<Episode>(episodes[0]);
   const [characters, setCharacters] = useState<Character[]>([]);
-
-  const [isLoading, setIsLoading] = useState(false);
   const [id, setId] = useState(1);
 
   const getEpisode = useCallback(
@@ -58,14 +56,6 @@ export default function Episodes({ episodes }: EpisodesProps) {
     }
   }, [fetchCharacters, episode]);
 
-  useEffect(() => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-  }, [episode]);
-
   const handleSelectEpisode = useCallback((id: number) => {
     setId(id);
   }, []);
@@ -86,7 +76,7 @@ export default function Episodes({ episodes }: EpisodesProps) {
         />
 
         <Flex direction="column" w="full" py={8}>
-          <Cards characters={characters} isLoading={isLoading} />
+          <Cards characters={characters} />
         </Flex>
       </Container>
 

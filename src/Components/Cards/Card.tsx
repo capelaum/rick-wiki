@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   Badge,
   Flex,
@@ -8,15 +9,26 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
-import { CardInfo } from "./CardInfo";
-
 import { Character } from "../../utils/types";
+
+import { CardInfo } from "./CardInfo";
+import { Loading } from "./Loading";
 
 interface CardProps {
   character: Character;
 }
 
 export function Card({ character }: CardProps) {
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  }, [character]);
+
   const { name, image, status, origin, location, gender, species } = character;
   const boxBackground = useColorModeValue("white", "gray.700");
   const cyanColor = useColorModeValue("cyan.600", "cyan");
@@ -25,7 +37,9 @@ export function Card({ character }: CardProps) {
     "rgba(0, 255, 255, 0.4) 0px 2px 4px, rgba(0, 255, 255, 0.3) 0px 7px 13px -3px, rgba(0, 255, 255, 0.2) 0px -3px 0px inset;",
   );
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <GridItem
       bg={boxBackground}
       shadow="lg"

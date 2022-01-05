@@ -24,7 +24,6 @@ export default function Home() {
   const [status, setStatus] = useState("");
   const [species, setSpecies] = useState("");
   const [gender, setGender] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
   const debouncedSearch = useDebounce<string>(search, 500);
 
@@ -44,14 +43,6 @@ export default function Home() {
         });
     })();
   }, [page, debouncedSearch, status, gender, species]);
-
-  useEffect(() => {
-    setIsLoading(true);
-
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-  }, [characters]);
 
   const handleSearch = useCallback((value: string) => {
     setSearch(value);
@@ -88,7 +79,7 @@ export default function Home() {
         <Flex direction="column" w="full" py={8}>
           <PaginationComponent info={info} page={page} setPage={setPage} />
 
-          <Cards characters={characters} isLoading={isLoading} />
+          <Cards characters={characters} />
         </Flex>
       </Container>
 
