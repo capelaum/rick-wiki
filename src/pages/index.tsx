@@ -78,7 +78,7 @@ export default function Home() {
       </Head>
       <Header />
 
-      <Container maxW="1240px" centerContent px="1.25rem">
+      <Container maxW="1240px" centerContent px="1.25rem" minH="100vh">
         <Filters
           handleSearch={handleSearch}
           search={search}

@@ -20,8 +20,8 @@ export function Cards({ characters, isLoading }: CardsProps) {
         spacingY="2rem"
         justifyItems="center"
       >
-        {characters.map((result) => (
-          <Card key={result.id} result={result} />
+        {characters.map((character) => (
+          <Card key={character.id} character={character} />
         ))}
       </SimpleGrid>
     );

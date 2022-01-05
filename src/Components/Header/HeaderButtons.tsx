@@ -1,4 +1,4 @@
-import { Stack, useColorMode } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
 
 import { ColorModeButton } from "../ColorModeButton";
 
@@ -9,8 +9,6 @@ interface HeaderButtonsProps {
 }
 
 export function HeaderButtons({ isRowDirection }: HeaderButtonsProps) {
-  const { colorMode, toggleColorMode } = useColorMode();
-
   return (
     <Stack
       direction={isRowDirection ? "row" : "column"}

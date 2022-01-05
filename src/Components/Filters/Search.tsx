@@ -67,11 +67,14 @@ export function Search({ handleSearch, search }: SearchProps) {
             <IconButton
               aria-label="Search database"
               icon={<SearchIcon />}
-              colorScheme="cyan"
+              colorScheme="ghost"
               color={cyanColor}
-              variant="ghost"
+              variant="solid"
               type="submit"
               _focus={{
+                outline: "none",
+              }}
+              _hover={{
                 outline: "none",
               }}
             />

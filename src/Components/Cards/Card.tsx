@@ -10,15 +10,20 @@ import {
 
 import { CardInfo } from "./CardInfo";
 
-import { Result } from "../../utils/types";
+import { Character } from "../../utils/types";
 
 interface CardProps {
-  result: Result;
+  character: Character;
 }
 
-export function Card({ result }: CardProps) {
+export function Card({ character }: CardProps) {
+  const { name, image, status, origin, location, gender, species } = character;
   const boxBackground = useColorModeValue("white", "gray.700");
-  const { name, image, status, origin, location, gender, species } = result;
+  const cyanColor = useColorModeValue("cyan.600", "cyan");
+  const cardShadow = useColorModeValue(
+    "rgba(0, 255, 255, 0.4) 0px 2px 4px, rgba(0, 255, 255, 0.3) 0px 7px 13px -3px, rgba(0, 255, 255, 0.2) 0px -3px 0px inset;",
+    "rgba(0, 255, 255, 0.4) 0px 2px 4px, rgba(0, 255, 255, 0.3) 0px 7px 13px -3px, rgba(0, 255, 255, 0.2) 0px -3px 0px inset;",
+  );
 
   return (
     <GridItem
@@ -28,8 +33,9 @@ export function Card({ result }: CardProps) {
       overflow="hidden"
       position="relative"
       border="1px solid"
-      borderColor="cyan.600"
+      borderColor={cyanColor}
       w={["full", "250px"]}
+      boxShadow={cardShadow}
     >
       <Image
         w="full"
@@ -63,6 +69,8 @@ export function Card({ result }: CardProps) {
           position="absolute"
           top={2}
           right={2}
+          fontSize="0.75rem"
+          rounded="md"
           colorScheme={
             status === "Dead" ? "red" : status === "Alive" ? "green" : "purple"
           }
