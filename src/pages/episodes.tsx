@@ -13,13 +13,13 @@ import { Cards } from "../Components/Cards";
 import { Header } from "../Components/Header";
 import { EpisodesHeader } from "../Components/Episodes/EpisodesHeader";
 import { EpisodeSelect } from "../Components/Episodes/EpisodeSelect";
+import { Footer } from "../Components/Footer";
 
 interface EpisodesProps {
   episodes: Episode[];
-  info: Info;
 }
 
-export default function Episodes({ episodes, info }: EpisodesProps) {
+export default function Episodes({ episodes }: EpisodesProps) {
   const [allEpisodes, _] = useState<Episode[]>(episodes);
   const [episode, setEpisode] = useState<Episode>(episodes[0]);
   const [characters, setCharacters] = useState<Character[]>([]);
@@ -77,7 +77,7 @@ export default function Episodes({ episodes, info }: EpisodesProps) {
       </Head>
       <Header />
 
-      <Container maxW="1240px" centerContent px="1.25rem">
+      <Container maxW="1240px" centerContent px="1.25rem" minH="100vh">
         <EpisodesHeader episode={episode} />
 
         <EpisodeSelect
@@ -89,6 +89,8 @@ export default function Episodes({ episodes, info }: EpisodesProps) {
           <Cards characters={characters} isLoading={isLoading} />
         </Flex>
       </Container>
+
+      <Footer />
     </>
   );
 }
@@ -111,7 +113,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 
   return {
-    props: { episodes, info },
+    props: { episodes },
     revalidate: 15 * 60,
   };
 };

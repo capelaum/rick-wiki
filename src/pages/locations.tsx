@@ -13,13 +13,13 @@ import { Header } from "../Components/Header";
 import { LocationsHeader } from "../Components/Locations/LocationsHeader";
 import { LocationSelect } from "../Components/Locations/LocationSelect";
 import { Cards } from "../Components/Cards";
+import { Footer } from "../Components/Footer";
 
 interface LocationsProps {
   locations: Location[];
-  info: Info;
 }
 
-export default function Locations({ locations, info }: LocationsProps) {
+export default function Locations({ locations }: LocationsProps) {
   const [allLocations, _] = useState<Location[]>(locations);
   const [location, setLocation] = useState<Location>(locations[0]);
   const [residents, setResidents] = useState<Character[]>([]);
@@ -77,7 +77,7 @@ export default function Locations({ locations, info }: LocationsProps) {
       </Head>
       <Header />
 
-      <Container maxW="1240px" centerContent px="1.25rem">
+      <Container maxW="1240px" centerContent px="1.25rem" minH="100vh">
         <LocationsHeader location={location} />
 
         <LocationSelect
@@ -89,6 +89,8 @@ export default function Locations({ locations, info }: LocationsProps) {
           <Cards characters={residents} isLoading={isLoading} />
         </Flex>
       </Container>
+
+      <Footer />
     </>
   );
 }
@@ -111,7 +113,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 
   return {
-    props: { locations, info },
+    props: { locations },
     revalidate: 15 * 60,
   };
 };

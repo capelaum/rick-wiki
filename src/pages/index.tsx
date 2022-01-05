@@ -92,7 +92,7 @@ export default function Home() {
         </Flex>
       </Container>
 
-      <Footer isRowDirection />
+      <Footer />
     </>
   );
 }

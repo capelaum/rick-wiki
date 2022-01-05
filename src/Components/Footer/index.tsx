@@ -13,11 +13,7 @@ import { FaHeart } from "react-icons/fa";
 import { ColorModeButton } from "../ColorModeButton";
 import { Logo } from "../Header/Logo";
 
-interface FooterProps {
-  isRowDirection?: boolean;
-}
-
-export function Footer({ isRowDirection }: FooterProps) {
+export function Footer() {
   const backgroundColor = useColorModeValue("white", "gray.700");
   const cyanColor = useColorModeValue("cyan.600", "cyan");
   const grayColor = useColorModeValue("gray.700", "gray.200");
