@@ -1,19 +1,14 @@
-import { useCallback, useEffect, useState } from "react";
-
-import Head from "next/head";
-import { GetStaticProps } from "next";
-
 import { Container, Flex } from "@chakra-ui/react";
-
-import { api } from "../services/api";
-
-import { Episode, Info, Character } from "../utils/types";
-
+import { GetStaticProps } from "next";
+import Head from "next/head";
+import { useCallback, useEffect, useState } from "react";
 import { Cards } from "../Components/Cards";
-import { Header } from "../Components/Header";
-import { EpisodesHeader } from "../Components/Episodes/EpisodesHeader";
 import { EpisodeSelect } from "../Components/Episodes/EpisodeSelect";
+import { EpisodesHeader } from "../Components/Episodes/EpisodesHeader";
 import { Footer } from "../Components/Footer";
+import { Header } from "../Components/Header";
+import { api } from "../services/api";
+import { Character, Episode } from "../utils/types";
 
 interface EpisodesProps {
   episodes: Episode[];
