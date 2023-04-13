@@ -20,7 +20,6 @@ export function Logo() {
         <Image
           src={Rick_Morty_Logo}
           alt="Rick and Morty Wiki"
-          layout="fixed"
           width={55}
           height={55}
         />
