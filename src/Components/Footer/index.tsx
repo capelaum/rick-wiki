@@ -1,5 +1,4 @@
 import { chakra, Flex, Icon, Text, useColorModeValue } from "@chakra-ui/react";
-import Link from "next/link";
 import { FaHeart } from "react-icons/fa";
 import { Logo } from "../Header/Logo";
 
@@ -30,15 +29,14 @@ export function Footer() {
 
         <Text color={grayColor} align="right" w="full" fontSize="md">
           Made with <Icon as={FaHeart} color={cyanColor} /> <br />
-          <Link href="https://github.com/capelaum" passHref>
-            <chakra.a
-              _hover={{ color: cyanColor }}
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              Luís Vinicius Capelletto
-            </chakra.a>
-          </Link>
+          <chakra.a
+            href="https://github.com/capelaum"
+            _hover={{ color: cyanColor }}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Luís Vinicius Capelletto
+          </chakra.a>
         </Text>
       </Flex>
     </Flex>

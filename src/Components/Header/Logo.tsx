@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Heading, Text, useColorModeValue } from "@chakra-ui/react";
 
